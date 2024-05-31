@@ -5,26 +5,33 @@ package model;
  * @author LENOVO
  */
 public class Book {
-    String id;
+    int id;
     String title;
-    String price;
     String author;
-    String imageUrl;
-    String detailUrl;
-    
-    String description;
+    String descrip;
+    int quantity;
+    double price;
+    int cateId;
 
     public Book() {
     }
 
-    public Book(String id, String title, String price, String author, String imageUrl, String detailUrl, String description) {
+    public Book(int id, String title, String author, String descrip, int quantity, double price, int cateId) {
         this.id = id;
         this.title = title;
-        this.price = price;
         this.author = author;
-        this.imageUrl = imageUrl;
-        this.detailUrl = detailUrl;
-        this.description = description;
+        this.descrip = descrip;
+        this.quantity = quantity;
+        this.price = price;
+        this.cateId = cateId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -35,14 +42,6 @@ public class Book {
         this.title = title;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -51,28 +50,37 @@ public class Book {
         this.author = author;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getDescrip() {
+        return descrip;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
     }
 
-    public String getDetailUrl() {
-        return detailUrl;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public double getPrice() {
+        return price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrice(double price) {
+        this.price = price;
     }
+
+    public int getCateId() {
+        return cateId;
+    }
+
+    public void setCateId(int cateId) {
+        this.cateId = cateId;
+    }
+
     
 }
