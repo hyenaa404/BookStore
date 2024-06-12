@@ -1,17 +1,14 @@
 <%-- 
     Document   : footer
-    Created on : May 23, 2024, 1:05:15 AM
+    Created on : May 21, 2024, 2:15:55 AM
     Author     : LENOVO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<footer class=" text-white text-center py-3" id = ft>
+    <div class="container">
+        <p>&copy; Copyright - English BookStore. All rights Reserved.</p>
+        <p>Address: 123 TQC, DaNang, VietNam</p>
+        <p>Email: treadstore@gmail.com | Phone: +1234567890</p>
+    </div>
+</footer>
