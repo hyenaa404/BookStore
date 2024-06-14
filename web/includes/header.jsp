@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div class = header >
-    <div class="row  heading "> <!--content header-->
+    <div class=" heading "> <!--content header-->
 
         <div id="col1" class="col-md-4          ">  
             <div id="logo">
@@ -34,8 +34,8 @@
             <a href="#" class="cart-icon">
                 <img src="./img/cart.png" alt="Cart" />
             </a>
-            <button class="btn login-btn">Login</button>
-            <button class="btn register-btn">Register</button>
+            <button class="btn login-btn">${leftbtn}</button>
+            <button class="btn register-btn">${rightbtn}</button>
         </div>
         </div>
 
@@ -45,7 +45,7 @@
         <div class="container">
             <!--<a class="navbar-brand" href="#">Home work</a>-->
             <!--<img src="./img/logo.png" alt=""/>-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            <button class="navbar-toggler" id ="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -78,4 +78,9 @@
         <h1>HOME</h1>
         <p>Books to change our world.</p>
     </section>
+    <script>
+        document.getElementById('navbar-toggler').addEventListener('click', function() {
+            document.querySelector('.navi').classList.toggle('expanded');
+        });
+    </script>
 </div>

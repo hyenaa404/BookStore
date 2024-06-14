@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Jun 12, 2024, 12:19:08 AM
+    Document   : register
+    Created on : Jun 12, 2024, 3:16:06 PM
     Author     : LENOVO
 --%>
 
@@ -13,26 +13,30 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="style.css" rel="stylesheet">
-        <title>T-Read- Login</title>
+        <title>T-Read- Register</title>
     </head>
     <body>
 
         <%@ include file="/includes/header.jsp" %>
 
 
-         <div class ="center login">
-            <h1>Login</h1>
+        <div class ="center register">
+            <h1>Register Account</h1>
             <form action="/login" method="post">
-                <!--<label for="username">Username:</label>-->
+                <input  type="text" id="fullname" name="fullname" placeholder="Full name"><br><br>
+
+                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number"><br><br>
+                
+                <input  type="text" id="email" name="email" placeholder="Email"><br><br>
+                
                 <input  type="text" id="username" name="user" placeholder="User name"><br><br>
 
-                <!--<label for="password">Password:</label>-->
                 <input  type="password" id="password" name="pass" placeholder="Password"><br><br>
 
-                <input type="submit" value="Login">
+                <input type="submit" value="Register">
             </form>
             </br> <p>${message}</p>
-            
+
         </div>
 
         <%@ include file="/includes/footer.jsp" %>
