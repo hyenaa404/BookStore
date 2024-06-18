@@ -376,8 +376,9 @@ label {
     /* Bao gồm cả border và padding trong chiều rộng */
 }
 
-.account button,
-input[type="submit"] {
+.account button, 
+input[type="submit"],
+.cart button, input[type="submit"] {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 5px 10px 5px 10px;
@@ -403,7 +404,7 @@ input[type="submit"]:hover {
 
 .login h1,
 .register h1,
-.account h1 {
+.account h1, .container h1 {
     color: #797777;
     margin: 40px 10px 10px 10px;
     font-size: 1.4rem;
@@ -411,7 +412,161 @@ input[type="submit"]:hover {
 }
 
 
-/*-----------------------------l--------------------------------------------------------*/
+/*-----------------------------cart--------------------------------------------------------*/
+#delete-btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 10px;
+    /* Thêm khoảng cách bên trong nút submit */
+    background-color: #fff;
+    /* Màu nền xanh */
+    color: #49694B;
+    /* Màu chữ trắng */
+    border: 2px solid #49694B;
+    /* Border cùng màu với nền */
+    border-radius: 0;
+    /* Loại bỏ bo góc */
+    cursor: pointer;
+}
+.cart-products{
+    min-width: 700px;
+    width: auto;
+    border-radius: 0px;
+    border: 1px solid #498374;
+    background-color: #fff;
+    box-shadow: 0px 3px 35px 0px rgba(24, 16, 35, 0.07);
+    padding: 15px 25px 1px 25px;
+}
+
+.cart-thead {
+    font-weight: bold;
+    font-size: 17px;
+    clear: both;
+    width: 100%;
+    border-bottom: 1px solid #498374;
+    border-right: none;
+    border-left: none;
+    float: left;
+    min-width: 600px;
+}
+
+.cart-thead div {
+    float: left;
+    padding: 10px 0;
+    color: #464545;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    /* font-family: "Product Sans"; */
+}
+/* .cart-item div {
+    float: left;
+    padding: 10px 0;
+    color: #464545;
+    text-align: center;
+    font-size: 16px; */
+    /* font-family: "Product Sans"; */
+/* } */
+
+
+.cart-tbody {
+    width: 100%;
+    float: left;
+}
+.cart-tbody img{
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+}
+.item-cart {
+    width: 100%;
+    float: left;
+    padding: 20px 0;
+}
+
+.product-name a, h2 {
+    display: block;
+    max-height: 75px;
+    overflow: hidden;
+    color: #707070;
+    font-size: 1rem;
+}
+
+.cart-item div {
+    line-height: 20px;
+    vertical-align: top;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    float: left;
+    padding: 10px 0;
+    color: #464545;
+    text-align: center;
+    font-size: 16px;
+}
+
+#col1, #col3{
+    flex-direction: column;
+}
+
+.number-input input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    outline: none;
+    -moz-appearance: textfield;
+}
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.number-input button {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    color: #464545;
+    border: none;
+    /* border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc; */
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+
+
+.a-right {
+    /* text-align: right !important; */
+    border: none;
+    padding: 35px 0 30px 0;
+    padding-right: 0;
+}
+.totals_price {
+    color: #498374;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 21px;
+    width: 15%;
+    font-weight: 400;
+    display: inline-block;
+    /* float: right; */
+}
+
+.total-table td {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    text-align: right;
+    padding: 10px;
+}
+.total-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+/* //--------------------------------------------------------------- */
 
 
 @media only screen and (max-width: 768px) {
@@ -474,5 +629,15 @@ input[type="submit"]:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
     }
+
+    /* -----------------------cart------------------ */
+    /* #col2, #col3, #head2, #head3{
+        display: none;
+    }
+
+    .cart-tbody div:{
+        display: block;
+        width: 100%;
+    } */
 
 }

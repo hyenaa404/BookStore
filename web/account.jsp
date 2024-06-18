@@ -26,16 +26,16 @@
             <div class ="center account">
                 <h1>Account information</h1>
                 <label for="username">Full Name</label>
-                <input  type="text" id="fullname" name="fullname" placeholder="Full name" disabled><br><br>
+                <input  type="text" id="fullname" name="fullname" placeholder="Full name" value ="John Doe" disabled><br><br>
 
                 <label for="username">Phone</label>
-                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" disabled><br><br>
+                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" value ="0912839272" disabled><br><br>
 
                 <label for="username">Email</label>
-                <input  type="text" id="email" name="email" placeholder="Email" disabled><br><br>
+                <input  type="text" id="email" name="email" placeholder="Email"value="johndoe97@gmail.com" disabled><br><br>
 
                 <label for="username">Username:</label>
-                <input  type="text" id="username" name="user" placeholder="User name" disabled><br><br>
+                <input  type="text" id="username" name="user" placeholder="User name"value ="johndoee" disabled><br><br>
                 <button onclick="showUpdateAccountOverlay()">Update information</button>
 
             </div>
@@ -80,9 +80,9 @@
                         <label for="pass">Password</label>
                         <input  type="password" id="password" name="password" placeholder="More than 8 letter" value =""><br>
 
-                    </div>
 
                     </br><tr><button type='submit'>Save</button></tr>
+                    </div>
 
                     </form>
                     <br/><br/>

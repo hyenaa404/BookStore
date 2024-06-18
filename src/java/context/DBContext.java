@@ -15,7 +15,7 @@ public class DBContext {
     private String server = "Admin-PC";
     private String user = "sa";
     private String password = "123456";
-    private String db = "BookStore";
+    private String db = "Book_Store";
     private int port = 1433;
 
     public Connection getConnection() throws Exception {

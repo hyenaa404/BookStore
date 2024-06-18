@@ -25,6 +25,14 @@ public class Book {
         this.price = price;
         this.cateId = cateId;
     }
+    public Book( String title, String author, String descrip, int quantity, double price, int cateId) {
+        this.title = title;
+        this.author = author;
+        this.descrip = descrip;
+        this.quantity = quantity;
+        this.price = price;
+        this.cateId = cateId;
+    }
 
     public int getId() {
         return id;
@@ -80,6 +88,12 @@ public class Book {
 
     public void setCateId(int cateId) {
         this.cateId = cateId;
+    }
+
+    @Override
+    public String toString() {
+        return  "TITLE:  " + title + "; AUTHOR:  " + author  + ";\n PRICE:  " + price + ";\n CATE:  " + cateId + " ;\n DES:  " + descrip +"\n" ;
+
     }
 
     

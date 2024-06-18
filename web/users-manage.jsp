@@ -17,7 +17,7 @@
 
         <link href="style.css" rel="stylesheet">
         <script src="mycode.js"></script>
-        <title>T-Read- Account</title>
+        <title>T-Read Users-Management</title>
     </head>
     <body>
 
@@ -36,9 +36,7 @@
                             <td>John Doe</td>
                             <td>023827348</td>
                             <td>johndoe97@123</td>
-                            <td>johndoe</td>
-                        <input type='hidden' name='id' value=${student.getId()}> 
-                        <input type="hidden" name="name" value="${name}"/></tr>
+                            <td>johndoe</td></tr>
                 </table>
                 </br>
                 
@@ -55,10 +53,10 @@
                             <thead><tr><th>ID</th><th>Name</th><th>User Name</th><th>Select</th></tr></thead></br>
                             <form name= 'update' action='update' method = 'post'>
                                 <tr>
-                                    <td><input  type="text" id="id" name="id"  value ="1" disabled></td>
-                                    <td><input  type="text" id="fullname" name="fullname"  value ="John Doe"disabled ></td>
-                                    <td><input  type="text" id="username" name="username"  value ="johndoe" disabled></td>
-                                    <td><input name="isDelete" type="checkbox" ></td>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>johndoe</td>
+                                    <td><input name="isDelete" type="checkbox" value =${user.getId()} ></td>
                         </table>
                         </br>
                         <tr><button type='submit'>Save</button></tr>
