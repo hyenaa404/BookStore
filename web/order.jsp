@@ -67,7 +67,7 @@
                                 <div id ="col2" style="width: 21%;" ><span class ="price">290.000</span></div>
                                 <div style="width: 16%">
                                     <div class="number-input">
-                                        <input type="number" id="number" name ="quantity" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
+                                        <input type="number" id="number" name ="quantity" class ="quantity" value="2" min="1" max="10"onchange="updateAmount(this)">
                                     </div></div>
                                 <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >
                                     <span class="amount"></span></div></tr></div>
@@ -79,7 +79,7 @@
                                 <div id ="col2" style="width: 21%;" ><span class ="price">350.000</span></div>
                                 <div style="width: 16%">
                                     <div class="number-input">
-                                        <input type="number" id="number" name ="quantity" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
+                                        <input type="number" id="number" name ="quantity" class ="quantity" value="2" min="1" max="10"onchange="updateAmount(this)">
                                     </div></div>
                                 <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >
                                     <span class="amount"></span></div></tr></div>

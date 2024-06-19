@@ -12,21 +12,23 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="style.css" rel="stylesheet">
-	<script src="mycode.js">
-            
-</script>
-        <title>Home work</title>
+        <script src="mycode.js">
+
+        </script>
+        <title>T-read</title>
     </head>
     <body>
-        
+
         <%@ include file="/includes/header.jsp" %>
-
-
-        <%@ include file="/includes/test.jsp" %>
+        <div class ="home">
+            <div class ="new-book">
+                <h3><a href="./new-books">Discover new books!</a></h3>
+            </div>
+        </div>
 
 
         <%@ include file="/includes/footer.jsp" %>
-        
+
         <script src="js/Jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </body>

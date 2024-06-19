@@ -92,10 +92,10 @@ window.onload = function () {
 function submitForm(method) {
     var form = document.getElementById('myForm');
     if (method === 'method1') {
-        form.action = '/cart';
+        form.action = './cart';
         form.method = 'post';
     } else if (method === 'method2') {
-        form.action = '/order';
+        form.action = './order';
         form.method = 'post';
     }
     form.submit();

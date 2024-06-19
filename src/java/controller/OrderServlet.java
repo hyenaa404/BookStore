@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author LENOVO
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "OrderServlet", urlPatterns = {"/order"})
+public class OrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,9 +30,19 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("leftbtn", "Login");
-        request.setAttribute("rightbtn", "Register");
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet OrderServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet OrderServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,7 +57,19 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String[] selected = request.getParameterValues("isSelected");
+        for (String bookID : selected) {
+            int id;
+            try {
+                id = Integer.parseInt(bookID);
+            } catch (NumberFormatException e) {
+                throw new ServletException("invalid id");
+            }
+            String quantity= request.getParameter("quantity_" + bookID);
+            request.setAttribute(bookID, quantity);
+
+        }
+        request.getRequestDispatcher("order.jsp").forward(request, response);
     }
 
     /**
@@ -61,7 +83,22 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String[] selected = request.getParameterValues("isSelected");
+        for (String bookID : selected) {
+            int id;
+            try {
+                id = Integer.parseInt(bookID);
+            } catch (NumberFormatException e) {
+                throw new ServletException("invalid id");
+            }
+            String quantity= request.getParameter("quantity_" + bookID);
+//            out.println(quantity +" "+ bookID);
+//            request.setAttribute("quantity_" +bookID, quantity);
+
+        }
+        request.getRequestDispatcher("order.jsp").forward(request, response);
     }
 
     /**

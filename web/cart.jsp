@@ -41,10 +41,10 @@
                         <div style="width: 16%">Quantity</div><div id ="head3" style="width: 13%;text-align: right!important;" >Amount</div></div>
 
                     <div class="cart-tbody">
-                        <form name= 'process' action='order' method = 'post'>
+                        <form id ="myForm" name= 'process' action='' method = ''>
                             <div class="cart-item">
                                 <tr>
-                                <div style="width: 6%" ><input name="isDelete" type="checkbox" value =${book.getId()} ></div>
+                                <div style="width: 6%" ><input name="isSelected" type="checkbox" value ="123" ></div>
                                 <div style="width: 6%;text-align: left;"><img width="120" height="auto" alt="A Soldier Reports (1980 edition) - Good / Paperback" src="https://bizweb.dktcdn.net/thumb/compact/100/364/248/products/a1sq8yjeg5l-sl1500.jpg"></div>
                                 <div style="width: 6%" ></div>
                                 <div id ="col1" style="width: 30%;align-items: flex-start;" class="a-center cart2"><h2 class="product-name" title="A Soldier Reports (1980 edition)"> <a href="./a-soldier-reports-1980-edition">A Soldier Reports (1980 edition)</a><span class="variant-title">Good / Paperback</span> </h2></div>
@@ -52,13 +52,13 @@
                                 <div style="width: 16%">
                                     <div class="number-input">
                                         <button type="button" onclick="decrement(this)">-</button>
-                                        <input type="number" id="number" name ="quantity" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
+                                        <input type="number" id="${book.getId()}" name ="quantity_123" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
                                         <button type="button" onclick="increment(this)">+</button>
                                     </div></div>
                                 <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >
                                     <span class="amount"></span></div></tr></div>
                             <div class="cart-item"><tr>
-                                <div style="width: 6%" ><input name="isDelete" type="checkbox" value =${book.getId()} ></div>
+                                <div style="width: 6%" ><input name="isSelected" type="checkbox" value ="234" ></div>
                                 <div style="width: 6%;text-align: left;"><img width="120" height="auto" alt="Culture and Imperialism" src="//bizweb.dktcdn.net/thumb/large/100/364/248/products/9780679750543.jpg?v=1623227444083"></div>
                                 <div style="width: 6%" ></div>
                                 <div id ="col1" style="width: 30%;align-items: flex-start;" class="a-center cart2"><h2 class="product-name" title="Culture and Imperialism"> <a href="./a-soldier-reports-1980-edition">Culture and Imperialism</a><span class="variant-title"> Edward W. Said</span> </h2></div>
@@ -66,7 +66,7 @@
                                 <div style="width: 16%">
                                     <div class="number-input">
                                         <button type="button"  onclick="decrement(this)">-</button>
-                                        <input type="number" name ="quantity" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
+                                        <input type="number" id ="${book.getId()}" name ="quantity_234" class ="quantity" value="1" min="1" max="10"onchange="updateAmount(this)">
                                         <button  type="button" onclick="increment(this)">+</button>
                                     </div></div>
                                 <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >

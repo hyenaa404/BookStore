@@ -432,7 +432,7 @@ input[type="submit"]:hover {
     min-width: 700px;
     width: auto;
     border-radius: 0px;
-    border: 1px solid #498374;
+    border: 1px solid #49694B;
     background-color: #fff;
     box-shadow: 0px 3px 35px 0px rgba(24, 16, 35, 0.07);
     padding: 15px 25px 1px 25px;
@@ -443,7 +443,7 @@ input[type="submit"]:hover {
     font-size: 17px;
     clear: both;
     width: 100%;
-    border-bottom: 1px solid #498374;
+    border-bottom: 1px solid #49694B;
     border-right: none;
     border-left: none;
     float: left;
@@ -546,7 +546,7 @@ input[type="submit"]:hover {
     padding-right: 0;
 }
 .totals_price {
-    color: #498374;
+    color: #49694B;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 21px;
     width: 15%;
@@ -566,8 +566,39 @@ input[type="submit"]:hover {
 }
 
 
-/* //--------------------------------------------------------------- */
+/* //--------------------------homeee------------------------------------- */
+/*
+.home .new-book h3 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: inline-block;
+    height: 45px;
+    padding: 15px 30px 15px;
+    -ms-align-items: center;
+    align-items: center;
+    -webkit-transform: skew(10deg);
+    -ms-transform: skew(10deg);
+    -o-transform: skew(10deg);
+    transform: skew(10deg);
+    background-color: #49694B;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flex;
+    display: -o-inline-flex;
+    display: inline-flex;
+    margin-left: -5px;
+}*/
 
+
+
+
+
+
+
+/* //--------------------------------------------------------------- */
 
 @media only screen and (max-width: 768px) {
     .heading {
