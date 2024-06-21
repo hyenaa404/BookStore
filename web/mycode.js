@@ -32,13 +32,13 @@ function hideUpdateAccountOverlay() {
 }
 
 
-//function showOrderOverlay() {
-//    document.getElementById("order-overlay").style.display = "block";
-//}
-//
-//function hideOrderOverlay() {
-//    document.getElementById("order-overlay").style.display = "none";
-//}
+function showInfOverlay() {
+    document.getElementById("user-overlay").style.display = "block";
+}
+
+function hideInfOverlay() {
+    document.getElementById("user-overlay").style.display = "none";
+}
 
 
 
@@ -100,3 +100,45 @@ function submitForm(method) {
     }
     form.submit();
 }
+
+
+
+function updateBookVisibility() {
+            var books = document.querySelectorAll('.book');
+            var windowWidth = window.innerWidth;
+
+            books.forEach(function(book, index) {
+                if (windowWidth < 768) { // xs and sm screens
+                    book.style.display = (index < 6) ? 'block' : 'none';
+                } else { // md and larger screens
+                    book.style.display = (index < 8) ? 'block' : 'none';
+                }
+            });
+            var books2 = document.querySelectorAll('.book2');
+            var windowWidth = window.innerWidth;
+            books2.forEach(function(book2, index) {
+                if (windowWidth < 768) { // xs and sm screens
+                    book2.style.display = (index < 6) ? 'block' : 'none';
+                } else { // md and larger screens
+                    book2.style.display = (index < 8) ? 'block' : 'none';
+                }
+            });
+            var books3 = document.querySelectorAll('.book3');
+            
+            var windowWidth = window.innerWidth;
+            books3.forEach(function(book3, index) {
+                if (windowWidth < 768) { // xs and sm screens
+                    book3.style.display = (index < 6) ? 'block' : 'none';
+                } else { // md and larger screens
+                    book3.style.display = (index < 8) ? 'block' : 'none';
+                }
+            });
+        }
+        
+        
+        function setRating(ratingElement, rating) {
+            ratingElement.setAttribute('data-rating', rating);
+        }
+
+//        const ratingElement = document.querySelector('.rating');
+//        setRatingFromAttribute(ratingElement);

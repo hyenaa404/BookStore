@@ -15,7 +15,7 @@ td {
 }
 
 #ft p {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 15px;
 }
 
@@ -97,7 +97,7 @@ table {
     font-style: italic;
 }
 
-.input {
+.input form {
 
     background: #fff;
     height: 100%;
@@ -107,30 +107,10 @@ table {
         background: #fff;
         font-size: 13px;*/
     border: 1px solid #294F37;
+    border-radius: 2px;
     /*    border-right: 0;
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;*/
-}
-
-.input input {
-    width: 100%;
-    flex: 1;
-    /* Cho phép input chiếm toàn bộ không gian còn lại */
-    padding: 10px;
-    /* Thêm khoảng cách bên trong input */
-    border: 1.3px solid #49694B;
-    /* Đặt border 2px màu đen */
-    border-radius: 0;
-    /* Loại bỏ bo góc */
-    box-sizing: border-box;
-    /* Bao gồm cả border và padding trong chiều rộng */
-}
-
-.search {
-    position: relative;
-    white-space: nowrap;
-    width: 1%;
-    padding: 0;
 }
 
 .search-new button {
@@ -143,6 +123,27 @@ table {
         margin-left: -11px;
         margin-top: -6px;*/
 }
+
+.input input {
+
+    width: 100%;
+    flex: 1;
+    padding: 10px;
+    border: 0px solid #49694B;
+    border-radius: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 8px rgba(0, 0.1, 0.1, 0.1);
+
+}
+
+.search {
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    padding: 0;
+}
+
+
 
 /* CSS for styling the header icons */
 .header-icons {
@@ -186,6 +187,7 @@ table {
 .navi {
     height: 50px;
     background-color: #49694B;
+    box-shadow: 0 4px 8px rgba(0.2, 0.2, 0.1, 0.1);
 }
 
 .navi.expanded {
@@ -267,38 +269,46 @@ table {
 
 .nav-link {
     display: block;
-    /* Đảm bảo a chiếm toàn bộ diện tích của li */
     padding: 10px 15px;
-    /* Thêm padding để tăng khoảng cách */
     color: #000;
-    /* Màu chữ, có thể thay đổi theo nhu cầu */
     text-decoration: none;
-    /* Loại bỏ gạch chân mặc định */
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .nav-link:hover {
-    background-color: #397040;
+    background-color: #4d5e4f;
     /* Màu nền khi hover */
     color: #007bff;
     /* Màu chữ khi hover */
 }
 
 /* ---------------------(account order--------- */
-.orders-table, .list-table {
+.orders-table,
+.list-table {
     width: 70%;
     min-width: 300px;
     margin-bottom: 40px;
     margin-top: -10px;
 }
 
-.orders-table th, .orders-table td ,.list-table  th, .list-table  td{
+.orders-table th,
+.orders-table td,
+.list-table th,
+.list-table td {
     padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 15px;
 }
-.list-table thead th, .list-table thead td{
+
+.list-table thead th,
+.list-table thead td {
     padding: 10px;
     color: #fff;
 }
-.orders-table thead, .list-table thead {
+
+.orders-table thead,
+.list-table thead {
     background-color: #49694B;
     color: #fff;
 }
@@ -368,17 +378,20 @@ label {
     /* Cho phép input chiếm toàn bộ không gian còn lại */
     padding: 10px;
     /* Thêm khoảng cách bên trong input */
-    border: 1.5px solid #49694B;
+    border: 1.0px solid #49694B;
     /* Đặt border 2px màu đen */
-    border-radius: 0;
+    border-radius: 2px;
     /* Loại bỏ bo góc */
     box-sizing: border-box;
     /* Bao gồm cả border và padding trong chiều rộng */
 }
 
-.account button, 
+.account button,
 input[type="submit"],
-.cart button, input[type="submit"] {
+.cart button,
+input[type="submit"],
+.order button,
+input[type="submit"] {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 5px 10px 5px 10px;
@@ -389,10 +402,10 @@ input[type="submit"],
     /* Màu chữ trắng */
     border: 2px solid #49694B;
     /* Border cùng màu với nền */
-    border-radius: 0;
+    border-radius: 2px;
     /* Loại bỏ bo góc */
     cursor: pointer;
-    /* Thay đổi con trỏ khi hover lên nút */
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.4);
 }
 
 input[type="submit"]:hover {
@@ -404,7 +417,8 @@ input[type="submit"]:hover {
 
 .login h1,
 .register h1,
-.account h1, .container h1 {
+.account h1,
+.container h1 {
     color: #797777;
     margin: 40px 10px 10px 10px;
     font-size: 1.4rem;
@@ -413,7 +427,7 @@ input[type="submit"]:hover {
 
 
 /*-----------------------------cart--------------------------------------------------------*/
-#delete-btn{
+#delete-btn {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 5px 10px 5px 10px;
@@ -428,7 +442,8 @@ input[type="submit"]:hover {
     /* Loại bỏ bo góc */
     cursor: pointer;
 }
-.cart-products{
+
+.cart .cart-products {
     min-width: 700px;
     width: auto;
     border-radius: 0px;
@@ -436,6 +451,38 @@ input[type="submit"]:hover {
     background-color: #fff;
     box-shadow: 0px 3px 35px 0px rgba(24, 16, 35, 0.07);
     padding: 15px 25px 1px 25px;
+    margin-top: 20px;
+}
+
+/* ------order------- */
+.order .cart-products {
+    min-width: 700px;
+    width: auto;
+    border-radius: 0px;
+    /* border: 1px solid #49694B; */
+    background-color: #fff;
+    /* box-shadow: 0px 3px 35px 0px rgba(24, 16, 35, 0.07); */
+    /* padding: 15px 25px 1px 25px; */
+    margin-top: 20px;
+}
+
+#inf-table {
+    width: 100%;
+    min-width: 300px;
+    margin-bottom: 40px;
+}
+
+#inf-table thead {
+    background-color: #ffffff;
+    color: #424141;
+    border-bottom: 1px solid #49694B;
+}
+
+#inf-table th {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px;
+    color: #524f4f;
 }
 
 .cart-thead {
@@ -455,17 +502,18 @@ input[type="submit"]:hover {
     padding: 10px 0;
     color: #464545;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     /* font-family: "Product Sans"; */
 }
+
 /* .cart-item div {
     float: left;
     padding: 10px 0;
     color: #464545;
     text-align: center;
     font-size: 16px; */
-    /* font-family: "Product Sans"; */
+/* font-family: "Product Sans"; */
 /* } */
 
 
@@ -473,19 +521,22 @@ input[type="submit"]:hover {
     width: 100%;
     float: left;
 }
-.cart-tbody img{
+
+.cart-tbody img {
     max-width: 100%;
     width: auto;
     height: auto;
     max-height: 100%;
 }
+
 .item-cart {
     width: 100%;
     float: left;
     padding: 20px 0;
 }
 
-.product-name a, h2 {
+.product-name a,
+h2 {
     display: block;
     max-height: 75px;
     overflow: hidden;
@@ -509,22 +560,27 @@ input[type="submit"]:hover {
     font-size: 16px;
 }
 
-#col1, #col3{
+#col1,
+#col3 {
     flex-direction: column;
 }
 
 .number-input input {
     width: 50px;
+    height: 30px;
     text-align: center;
     border: none;
     outline: none;
     -moz-appearance: textfield;
+    border-radius: 3px;
 }
+
 .number-input input::-webkit-outer-spin-button,
 .number-input input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 .number-input button {
     width: 30px;
     height: 30px;
@@ -536,6 +592,9 @@ input[type="submit"]:hover {
     cursor: pointer;
     font-size: 18px;
     line-height: 1;
+    box-shadow: none;
+    border-radius: 3px;
+    ;
 }
 
 
@@ -545,6 +604,7 @@ input[type="submit"]:hover {
     padding: 35px 0 30px 0;
     padding-right: 0;
 }
+
 .totals_price {
     color: #49694B;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -560,15 +620,33 @@ input[type="submit"]:hover {
     text-align: right;
     padding: 10px;
 }
+
 .total-table {
     width: 100%;
     border-collapse: collapse;
 }
 
+/* 
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+} */
+
+
 
 /* //--------------------------homeee------------------------------------- */
-/*
-.home .new-book h3 {
+.home {
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    /* margin-right: 20px;
+    margin-left: 20px; */
+}
+
+.home .new-book h3,
+.home .best-seller h3,
+.home .recommend h3 {
     margin: 0;
     font-size: 20px;
     line-height: 24px;
@@ -590,15 +668,238 @@ input[type="submit"]:hover {
     display: -o-inline-flex;
     display: inline-flex;
     margin-left: -5px;
-}*/
+    margin-bottom: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.4);
+}
+
+.home .new-book h3 a,
+.home .best-seller h3 a,
+.home .recommend h3 a {
+    color: #fff;
+    font-weight: 490;
+    font-style: oblique;
+}
+
+.home img {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.4);
+}
+
+.book-detail {
+    padding: 10%;
+}
+
+.book-name {
+    color: #464545;
+    font-size: 1rem;
+    line-height: 22px;
+    /* margin: 5px; */
+    padding: 0;
+    font-weight: 500;
+    word-break: break-word;
+    overflow: hidden;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 22px;
+}
+
+.home .price {
+    color: #d96923;
+    font-size: 1.1rem;
+    line-height: 22px;
+    margin: 5px;
+    padding: 0;
+    font-weight: 500;
+    word-break: break-word;
+    overflow: hidden;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 22px;
+}
+
+.banner-home {
+    margin: 20px -10px 20px -10px;
+}
+
+/* //-----------------------pruduct-details---------------------------------------- */
+
+.details-container {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+}
+
+S .book-img {
+
+    margin: 0px 20px 0px 20px;
+}
+
+.book-img img {
+    width: 100%;
+}
+
+.product-details {
+    margin: 10px 20px 10px 20px;
+}
+
+#details {
+
+    background-color: #F3F3F3;
+}
+
+.title-product {
+    color: #3f3f3f;
+    font-size: 30px;
+    line-height: 36px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.group-status {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.group-status p {
+    margin: 0 20px 0 0;
+    display: inline-block;
+}
+
+b,
+strong {
+    font-weight: 700;
+}
+
+.group-status a {
+    color: #252525;
+    text-decoration: none;
+    background: transparent;
+}
+
+.product-details .price {
+    color: #d97e23;
+    font-size: 1.4rem;
+    margin: 20px 0 20px 0;
+    padding: 0;
+    font-weight: 650;
+    word-break: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.quantity-label {
+    font-weight: 400;
+    display: inline-block;
+    float: left;
+    line-height: 45px;
+    margin-right: 30px;
+    /* color: #498374; */
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.add-cart-btn {
+    width: 100%;
+    
+}
+.status{
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    
+}
+
+#cart-btn {
+    margin: 40px 0 40px 0;
+    height: 50px;
+    width: 300px;
+    border-radius: 3px;
+    background-color: #49694B;
+    border: 1px;
+    color: #F3F3F3;
+    font-weight: 600;
+}
+
+/* --------------------------------------rating--------------------------------------------------------- */
+.rating {
+    /* display: inline-block; */
+    margin-top: -15px;
+    position: relative;
+    font-size: 1.5em;
+    color: #eb9800;
+}
+.rating-border{
+    width: 140px;
+    content: '☆ ☆ ☆ ☆ ☆';
+    position: relative;
+    font-size: 1.5em;
+    color: #eb9800;
+}
+.rating-border::before {
+    content: '☆ ☆ ☆ ☆ ☆';
+    color: #ffa806;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    white-space: nowrap;
+    transition: width 0.2s;
+}
+.rating::before {
+    content: '★ ★ ★ ★ ★';
+    color: #ffa806;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.2s;
+}
+.rating[data-rating="1"]::before { width: 20px; }
+.rating[data-rating="2"]::before { width: 50px; }
+.rating[data-rating="3"]::before { width: 80px; }
+.rating[data-rating="4"]::before { width: 105px; }
+.rating[data-rating="5"]::before { width: 140px; }
+
+
+
+.product-tab h4 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    padding: 40px 0 10px 30px;
+    color: #677070;
+    border-bottom: 3px solid #9f9f9f;
+    font-size: 25px;
+    padding-bottom: 10px;
+    max-width: 1000px;
+    margin: auto;
+}
 
 
 
 
+/* ----------------------------------------------------------------------------------------- */
 
-
-
-/* //--------------------------------------------------------------- */
 
 @media only screen and (max-width: 768px) {
     .heading {
@@ -660,6 +961,18 @@ input[type="submit"]:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
     }
+
+    
+#cart-btn {
+    margin: 40px 0 40px 0;
+    height: 50px;
+    width: 100%;
+    border-radius: 3px;
+    background-color: #49694B;
+    border: 1px;
+    color: #F3F3F3;
+    font-weight: 600;
+}
 
     /* -----------------------cart------------------ */
     /* #col2, #col3, #head2, #head3{

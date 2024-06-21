@@ -20,10 +20,7 @@
             <form name= 'seach' action='search' method = 'post'>
                 <div class=" search-new ">
                     <div class="input">
-                    <input type="text" name ="search" placeholder="Search"></div>
-<!--                    <span class = "search">
-                        <button type='submit'>Go</button>
-                    </span>-->
+                        <input type="text" name ="search" placeholder="Search..."></div>
                 </div>
 
 
@@ -31,12 +28,12 @@
         </div>
         <div id="col3" class="col-md-4 mid-header">
             <div class="header-icons">
-            <a href="#" class="cart-icon">
-                <img src="./img/cart.png" alt="Cart" />
-            </a>
-            <button class="btn login-btn">${leftbtn}</button>
-            <button class="btn register-btn">${rightbtn}</button>
-        </div>
+                <a href="./cart" class="cart-icon">
+                    <img src="./img/cart.png" alt="Cart" />
+                </a>
+                <button class="btn login-btn" onclick="window.location.href = './${leftlink}'">${leftbtn}</button>
+                <button class="btn register-btn" onclick="window.location.href = './${rightlink}'">${rightbtn}</button>
+            </div>
         </div>
 
 
@@ -79,7 +76,7 @@
         <p>Books to change our world.</p>
     </section>
     <script>
-        document.getElementById('navbar-toggler').addEventListener('click', function() {
+        document.getElementById('navbar-toggler').addEventListener('click', function () {
             document.querySelector('.navi').classList.toggle('expanded');
         });
     </script>

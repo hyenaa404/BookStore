@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author LENOVO
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/"})
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -31,7 +31,9 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("leftbtn", "Login");
+        request.setAttribute("leftlink", "login");
         request.setAttribute("rightbtn", "Register");
+        request.setAttribute("rightlink", "register");
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
