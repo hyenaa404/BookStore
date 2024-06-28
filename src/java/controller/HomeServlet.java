@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Book;
 
 /**
  *
@@ -49,7 +52,19 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        BookDAO bookDAO = new BookDAO();
+        List<Book> newBook = bookDAO.getNewBooksList();
+        List<Book> recommend = bookDAO.getRecommendBooksList();
+        List<Book> bestSeller = bookDAO.getBestSellerBooksList();
+        request.setAttribute("newBook", newBook);
+        request.setAttribute("recommend", recommend);
+        request.setAttribute("bestSeller", bestSeller);
+        request.setAttribute("leftbtn", "Login");
+        request.setAttribute("leftlink", "login");
+        request.setAttribute("rightbtn", "Register");
+        request.setAttribute("rightlink", "register");
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**

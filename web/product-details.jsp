@@ -122,7 +122,7 @@
                             <button id ="cart-btn">Add to cart</button>
                         </div>
 
-                        <div class="rating " data-rating="4"></div>
+                        <div class="rating " data-rating="3"></div>
                         <div class ="rating-border"></div>
                     </div>
                 </div>
@@ -130,10 +130,21 @@
 
 
             </div> 
-            <div >
+            <div class ="product-descript" >
                 <div class ="product-tab">
                     <h4>DESCRIPTION</h4>
-
+                </div>
+                <div>
+                    <p>The Coming of the French Revolution remains essential reading for anyone interested in the origins of this great turning point in the formation of the modern world. First published in 1939, on the eve of the Second World War, and suppressed by the Vichy government, this classic work explains what happened in France in 1789, the first year of the French Revolution. Georges Lefebvre wrote history "from below"--a Marxist approach. Here, he places the peasantry at the center of his analysis, emphasizing the class struggles in France and the significant role they played in the coming of the revolution. Eloquently translated by the historian R. R. Palmer and featuring an introduction by Timothy Tackett that provides a concise intellectual biography of Lefebvre and a critical appraisal of the book, this Princeton Classics edition continues to offer fresh insights into democracy, dictatorship, and insurrection. show more</p>
+                </div>
+            </div>
+            <div class ="product-descript" >
+                <div class ="product-tab">
+                    <h4>REVIEW</h4>
+                </div>
+                
+                <div class ="review-content">
+                    <input type = "text" name = "review" placeholder="Enter content...">
                 </div>
             </div>
         </div>

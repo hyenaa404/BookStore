@@ -12,11 +12,23 @@ public class Book {
     int quantity;
     double price;
     int cateId;
+    String imgURL;
 
     public Book() {
     }
 
-    public Book(int id, String title, String author, String descrip, int quantity, double price, int cateId) {
+   
+//    public Book( String title, String author, String descrip, int quantity, double price, int cateId) {
+//        this.title = title;
+//        this.author = author;
+//        this.descrip = descrip;
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.cateId = cateId;
+//        
+//    }
+
+    public Book(int id, String title, String author, String descrip, int quantity, double price, int cateId, String imgURL) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -24,15 +36,28 @@ public class Book {
         this.quantity = quantity;
         this.price = price;
         this.cateId = cateId;
+        this.imgURL = imgURL;
     }
-    public Book( String title, String author, String descrip, int quantity, double price, int cateId) {
+
+    public Book(String title, String author, String descrip, int quantity, double price, int cateId, String imgURL) {
         this.title = title;
         this.author = author;
         this.descrip = descrip;
         this.quantity = quantity;
         this.price = price;
         this.cateId = cateId;
+        this.imgURL = imgURL;
     }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+    
+    
 
     public int getId() {
         return id;
