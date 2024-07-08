@@ -22,7 +22,8 @@
 
         <div class ="center register">
             <h1>Register Account</h1>
-            <form action="/login" method="post">
+            <form action="register" method="post">
+                
                 <input  type="text" id="fullname" name="fullname" placeholder="Full name"><br><br>
 
                 <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number"><br><br>

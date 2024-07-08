@@ -18,7 +18,7 @@
         <link href="style.css" rel="stylesheet">
         <script src="mycode.js"></script>
         <script>document.addEventListener('DOMContentLoaded', function () {
-            
+
                 var quantityInputs = document.querySelectorAll('.quantity');
                 quantityInputs.forEach(function (input) {
                     updateAmount(input);
@@ -82,6 +82,8 @@
                 <tr><button id="delete-btn" type='submit' onclick="submitForm('method1')">Delete</button>
                 <button type="submit" onclick="submitForm('method2')">Order</button></tr>
                 </form>
+
+                <p>${orderStatus}</p>
             </div>
 
 

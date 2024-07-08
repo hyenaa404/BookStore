@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 /**
  *
@@ -62,7 +65,30 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        AccountDAO acDAO = new AccountDAO();
+
+        String fullName = request.getParameter("fullname");
+
+        String phoneNumber = request.getParameter("phonenumer");
+
+        String email = request.getParameter("email");
+
+        String userName = request.getParameter("user");
+
+        String passWord = request.getParameter("pass");
+
+        Account ac = new Account(userName, passWord, fullName, phoneNumber, email, 2);
+
+        if (acDAO.createAccount(ac)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("message", "Register successfully! Login to continue.");
+            response.sendRedirect("login");
+        } else {
+            request.setAttribute("message", "Error, failed to regist new account!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
+
     }
 
     /**

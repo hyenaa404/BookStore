@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.AccountDAO;
 import context.BookDAO;
 //import context.ImgDAO;
 import java.io.BufferedReader;
@@ -14,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Book;
-import model.Img;
 import util.FormatString;
 
 /**
@@ -111,7 +111,8 @@ public class Main {
 //        }
 //        System.out.println(k);
 
-        System.out.println(FormatString.formatCurrency(290000.0));
+    AccountDAO acc = new AccountDAO();
+//        System.out.println(acc.checkAccountByUserName("huesuong"));
     }
 
 }

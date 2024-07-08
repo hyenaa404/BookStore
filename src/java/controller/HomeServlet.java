@@ -33,6 +33,14 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        BookDAO bookDAO = new BookDAO();
+        List<Book> newBook = bookDAO.getNewBooksList();
+        List<Book> recommend = bookDAO.getRecommendBooksList();
+        List<Book> bestSeller = bookDAO.getBestSellerBooksList();
+        request.setAttribute("newBook", newBook);
+        request.setAttribute("recommend", recommend);
+        request.setAttribute("bestSeller", bestSeller);
         request.setAttribute("leftbtn", "Login");
         request.setAttribute("leftlink", "login");
         request.setAttribute("rightbtn", "Register");

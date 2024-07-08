@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,12 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Book;
 
 /**
  *
  * @author LENOVO
  */
-@WebServlet(name = "DetailBookServlet", urlPatterns = {"/DetailBookServlet"})
+@WebServlet(name = "DetailBookServlet", urlPatterns = {"/detail"})
 public class DetailBookServlet extends HttpServlet {
 
     /**
@@ -32,16 +34,17 @@ public class DetailBookServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DetailBookServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DetailBookServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            request.setAttribute("leftbtn", "Login");
+            request.setAttribute("leftlink", "login");
+            request.setAttribute("rightbtn", "Register");
+            request.setAttribute("rightlink", "register");
+            int id = Integer.parseInt(request.getParameter("bookId"));
+            BookDAO bookDAO = new BookDAO();
+            Book b = bookDAO.getBookByID(id);
+            request.setAttribute("book", b);
+//            out.print(b.getTitle());
+            request.getRequestDispatcher("product-details.jsp").forward(request, response);
         }
     }
 

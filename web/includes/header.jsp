@@ -10,9 +10,11 @@
     <div class=" heading "> <!--content header-->
 
         <div id="col1" class="col-md-4          ">  
+            <a href="${pageContext.request.contextPath}">
             <div id="logo">
                 <img src="./img/logo.png" alt="T-Read" />
             </div>
+                </a>
         </div>
 
         <div id="col2" class="col-md-4">
@@ -49,10 +51,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">All Book</a>
+                        <a class="nav-link" href="./all-book">All Book</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Fiction </a>
@@ -72,7 +74,7 @@
 
     <!-- Banner Section -->
     <section class=" banner jumbotron text-center">
-        <h1>HOME</h1>
+        <h1>T-READ</h1>
         <p>Books to change our world.</p>
     </section>
     <script>

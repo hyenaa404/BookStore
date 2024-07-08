@@ -4,21 +4,21 @@
  */
 package controller;
 
-import context.AccountDAO;
+import context.BookDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpSession;
-import model.Account;
+import java.util.List;
+import model.Book;
 
 /**
  *
  * @author LENOVO
  */
-//@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+public class AllBookServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,44 +29,21 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private String adminName;
-    private String adminPass;
-    AccountDAO accountDAO = new AccountDAO();
-
-    @Override
-    public void init() throws ServletException {
-        adminName = getServletConfig().getInitParameter("user");
-        adminPass = getServletConfig().getInitParameter("pass");
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-
-        String u = request.getParameter("user");
-
-        String p = request.getParameter("pass");
-
-        HttpSession session = request.getSession();
-        Account acc = accountDAO.checkAccountByUserName(u);
-        if (u.equals(adminName) && p.equals(adminPass)) {
-            session.setAttribute("username", u);
-            session.setAttribute("role", "admin");
-            session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        } else if (accountDAO.checkAccountByUserName(u) != null && acc.getPassWord().equals(p)) {
-            session.setAttribute("username", u);
-            session.setAttribute("user", acc);
-            session.setAttribute("role", "customer");
-            session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            session.setAttribute("disabled", "disabled");
-//            request.getRequestDispatcher("home").forward(request, response);
-            response.sendRedirect("home");
-        } else {
-            request.setAttribute("message", "Error name and passwword");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AllBookServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AllBookServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -82,7 +59,41 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        BookDAO bookDAO = new BookDAO();
+        List<Book> all = bookDAO.getBookList();
+        
+//        request.setAttribute("list", all);
+        request.setAttribute("leftbtn", "Login");
+        request.setAttribute("leftlink", "login");
+        request.setAttribute("rightbtn", "Register");
+        request.setAttribute("rightlink", "register");
+        
+        
+        
+        int currentPage = 1;
+        if (request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        
+        int totalBooks = all.size();
+        int totalPages = (int) Math.ceil((double) totalBooks / 24);
+
+        
+        int startIndex = (currentPage - 1) * 24;
+        int endIndex = Math.min(startIndex + 24, totalBooks);
+        List<Book> booksOnPage = all.subList(startIndex, endIndex);
+
+        
+        request.setAttribute("list", booksOnPage);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("totalPages", totalPages);
+
+        
+        
+        
+        
+        request.getRequestDispatcher("products-list.jsp").forward(request, response);
     }
 
     /**

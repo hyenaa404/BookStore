@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -57,19 +58,17 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] selected = request.getParameterValues("isSelected");
-        for (String bookID : selected) {
-            int id;
-            try {
-                id = Integer.parseInt(bookID);
-            } catch (NumberFormatException e) {
-                throw new ServletException("invalid id");
-            }
-            String quantity= request.getParameter("quantity_" + bookID);
-            request.setAttribute(bookID, quantity);
-
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("username") != null) {
+            request.setAttribute("leftbtn", "Logout");
+            request.setAttribute("leftlink", "logout");
+            request.setAttribute("rightbtn", "Account");
+            request.setAttribute("rightlink", "account");
+            request.getRequestDispatcher("order.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("order.jsp").forward(request, response);
+        
     }
 
     /**
@@ -85,7 +84,23 @@ public class OrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("username") != null) {
+            request.setAttribute("leftbtn", "Logout");
+            request.setAttribute("leftlink", "logout");
+            request.setAttribute("rightbtn", "Account");
+            request.setAttribute("rightlink", "account");
+            
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
         String[] selected = request.getParameterValues("isSelected");
+        
+        
+        if(request.getParameter("isSelected") == null){
+        request.setAttribute("orderStatus", "Choose books to start Order!");
+        request.getRequestDispatcher("cart").forward(request, response);
+        }
         for (String bookID : selected) {
             int id;
             try {

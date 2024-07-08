@@ -26,16 +26,16 @@
             <div class ="center account">
                 <h1>Account information</h1>
                 <label for="username">Full Name</label>
-                <input  type="text" id="fullname" name="fullname" placeholder="Full name" value ="John Doe" disabled><br><br>
+                <input  type="text" id="fullname" name="fullname" placeholder="Full name" value ="${user.getFullName()}" disabled><br><br>
 
                 <label for="username">Phone</label>
-                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" value ="0912839272" disabled><br><br>
+                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" value ="${user.getPhoneNumber()}" disabled><br><br>
 
                 <label for="username">Email</label>
-                <input  type="text" id="email" name="email" placeholder="Email"value="johndoe97@gmail.com" disabled><br><br>
+                <input  type="text" id="email" name="email" placeholder="Email"value="${user.getEmail()}" disabled><br><br>
 
                 <label for="username">Username:</label>
-                <input  type="text" id="username" name="user" placeholder="User name"value ="johndoee" disabled><br><br>
+                <input  type="text" id="username" name="user" placeholder="User name"value ="${user.getUserName()}" disabled><br><br>
                 <button onclick="showUpdateAccountOverlay()">Update information</button>
 
             </div>

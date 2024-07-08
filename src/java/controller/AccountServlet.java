@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -30,10 +31,16 @@ public class AccountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("leftbtn", "Logout");
-        request.setAttribute("rightbtn", "Account");
-        request.getRequestDispatcher("account.jsp").forward(request, response);
-
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("username") != null) {
+            request.setAttribute("leftbtn", "Logout");
+            request.setAttribute("leftlink", "logout");
+            request.setAttribute("rightbtn", "Account");
+            request.setAttribute("rightlink", "account");
+            request.getRequestDispatcher("account.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("login").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

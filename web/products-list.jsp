@@ -4,7 +4,10 @@
     Author     : LENOVO
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="model.*,java.util.*,util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,43 +18,83 @@
         <link href="style.css" rel="stylesheet">
         <script src="mycode.js">
         </script>
-        <script>
 
-            window.addEventListener('resize', updateBookVisibility);
-            window.addEventListener('load', updateBookVisibility);
-        </script>
         <title>T-read</title>
     </head>
     <body>
 
+        <%HttpSession existingSession = request.getSession(false);
+                if (existingSession != null &&  existingSession.getAttribute("username") != null) {
+                  request.setAttribute("leftbtn", "Logout");
+                  request.setAttribute("leftlink", "logout");
+                  request.setAttribute("rightbtn", "Account");
+                  request.setAttribute("rightlink", "account");
+               }%>
         <%@ include file="/includes/header.jsp" %>
         <div class ="home">
-            <div class ="new-book">
-                <h3><a href="./new-books">Discover new books!</a></h3>
+            <div class ="list-book">
+
                 <div class = "row">
-                    <%for (int i = 0; i<8; i++){%>
-                    <div class="col-6 col-sm-4 col-md-3 book">
-                        <a href="#">
-                            <div class ="book-detail">
-                                <img src=" //bizweb.dktcdn.net/thumb/large/100/364/248/products/91qvx7ze7yl-sl1500.jpg?v=1716211197813" alt="Camry 2021" />
-                                <div class = "book-inf">
-                                    <h4 class = "book-name">
-                                        Divided : Why We're Living in an Age of Walls
-                                    </h4>
-                                    <h4 class = "price">
-                                        290.000 VND
-                                    </h4>
+                    <c:forEach var ="b" items='${list}'>
+                        <div class="col-6 col-sm-4 col-md-3 book3">
+                            <a href="./detail?bookId=${b.getId()}">
+                                <input type = "hidden" name ="bookId" value = ${b.getId()}>
+                                <div class ="book-detail">
+                                    <div class = img-wrapper>
+                                        <img src="${b.getImgURL()}" alt="${b.title}" /></div>
+                                    <div class = "book-inf">
+                                        <h4 class = "book-name">
+                                            ${b.getTitle()}
+                                        </h4>
+                                        <h4 class = "price">
+                                            <c:out value="${FormatString.formatCurrency(b.getPrice())}" />
+                                        </h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <%}%>
+                            </a>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
-            
 
+            <div id ="pagi" class="pagination-1">
+                <c:if test="${currentPage > 1}">
+                    <a class ="navi-button" href="${pageContext.request.contextPath}/all-book?page=${currentPage - 1}">&lsaquo;</a>
+                </c:if>
+
+
+                <a href="${pageContext.request.contextPath}/all-book?page=1">1</a>
+
+                <!-- Show the dots if current page is far from the start -->
+                <c:if test="${currentPage > 3}">
+                    <span id ="none">...</span>
+                </c:if>
+
+                <c:forEach var="i" begin="2" end="${totalPages - 1}">
+                    <c:if test="${i >= currentPage - 1 && i <= currentPage + 1}">
+                        <c:choose>
+                            <c:when test="${i == currentPage}">
+                                <span>${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/all-book?page=${i}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+                </c:forEach>
+
+                <c:if test="${currentPage < totalPages - 2}">
+                    <span id ="none">...</span>
+                </c:if>
+
+                <!-- Always show the last page -->
+                <a href="${pageContext.request.contextPath}/all-book?page=${totalPages}">${totalPages}</a>
+
+                <c:if test="${currentPage < totalPages}">
+                    <a class ="navi-button" href="${pageContext.request.contextPath}/all-book?page=${currentPage + 1}">&rsaquo;</a>
+                </c:if>
+            </div>
         </div>
-
 
         <%@ include file="/includes/footer.jsp" %>
 

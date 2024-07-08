@@ -51,7 +51,7 @@ table {
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 0 10px 0 0;
-    border-radius: 0px;
+    border-radius: 5px;
     box-shadow: 0px 0px 10px 0px #000;
 }
 
@@ -341,15 +341,11 @@ label {
     width: 28%;
     min-width: 200px;
     flex: 1;
-    /* Cho phép input chiếm toàn bộ không gian còn lại */
     padding: 10px;
-    /* Thêm khoảng cách bên trong input */
-    border: 1.5px solid #49694B;
-    /* Đặt border 2px màu đen */
-    border-radius: 0;
-    /* Loại bỏ bo góc */
+    border: 0px solid #49694B;
+    border-radius: 2px;
     box-sizing: border-box;
-    /* Bao gồm cả border và padding trong chiều rộng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
 }
 
 .register input[type="text"],
@@ -358,15 +354,11 @@ label {
     width: 50%;
     min-width: 200px;
     flex: 1;
-    /* Cho phép input chiếm toàn bộ không gian còn lại */
     padding: 10px;
-    /* Thêm khoảng cách bên trong input */
-    border: 1.5px solid #49694B;
-    /* Đặt border 2px màu đen */
-    border-radius: 0;
-    /* Loại bỏ bo góc */
+    border: 0px solid #49694B;
+    border-radius: 2px;
     box-sizing: border-box;
-    /* Bao gồm cả border và padding trong chiều rộng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
 }
 
 .account input[type="text"],
@@ -375,15 +367,11 @@ label {
     width: 50%;
     min-width: 200px;
     flex: 1;
-    /* Cho phép input chiếm toàn bộ không gian còn lại */
     padding: 10px;
-    /* Thêm khoảng cách bên trong input */
-    border: 1.0px solid #49694B;
-    /* Đặt border 2px màu đen */
+    border: 0px solid #49694B;
     border-radius: 2px;
-    /* Loại bỏ bo góc */
     box-sizing: border-box;
-    /* Bao gồm cả border và padding trong chiều rộng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
 }
 
 .account button,
@@ -674,7 +662,8 @@ h2 {
 
 .home .new-book h3 a,
 .home .best-seller h3 a,
-.home .recommend h3 a {
+.home .recommend h3 a ,
+.list-book h3 a {
     color: #fff;
     font-weight: 490;
     font-style: oblique;
@@ -842,6 +831,7 @@ strong {
     
 }
 .status{
+    color: dimgray;
     font-size: 13px;
     font-weight: 500;
     margin-top: 40px;
@@ -941,6 +931,66 @@ strong {
 
 
 
+
+
+.pagination-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.pagination-1 a, .home span {
+    font-size: 14.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    /* display: block; */
+    margin: 0 5px;
+    padding: 5px 15px;
+    text-decoration: none;
+    color: #2e6b47;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-1 .navi-button {
+    font-size: 24px;
+    font-weight: 300;
+    padding-bottom: 11px;
+}
+
+.pagination-1 a:hover {
+    background-color: #3f4d42;
+    color: white;
+}
+
+.pagination-1 span {
+    background-color: #494f4c;
+    color: white;
+    border: 1px solid #181918;
+    
+}
+
+#none {
+    background-color: #ffffff;
+    display: block;
+    margin: 0 5px;
+    padding: 5px 15px;
+    text-decoration: none;
+    color: #2e6b47;
+    border: 0px solid #ddd;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.col-md-3, .col-sm-4, .col-6{
+    overflow: hidden;
+}
 /* ----------------------------------------------------------------------------------------- */
 
 

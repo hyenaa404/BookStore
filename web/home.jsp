@@ -27,6 +27,13 @@
     </head>
     <body>
 
+        <%HttpSession existingSession = request.getSession(false);
+                if (existingSession != null &&  existingSession.getAttribute("username") != null) {
+                  request.setAttribute("leftbtn", "Logout");
+                  request.setAttribute("leftlink", "logout");
+                  request.setAttribute("rightbtn", "Account");
+                  request.setAttribute("rightlink", "account");
+               }%>
         <%@ include file="/includes/header.jsp" %>
         <div class ="home">
             <div class ="recommend">
@@ -34,7 +41,8 @@
                 <div class = "row">
                     <c:forEach var ="b" items='${recommend}'>
                         <div class="col-6 col-sm-4 col-md-3 book3">
-                            <a href="#">
+                            <a href="./detail?bookId=${b.getId()}">
+                            <input type = "hidden" name ="bookId" value = ${b.getId()}>
                                 <div class ="book-detail">
                                     <div class = img-wrapper>
                                         <img src="${b.getImgURL()}" alt="${b.title}" /></div>
@@ -60,7 +68,7 @@
                 <div class = "row">
                     <c:forEach var ="b" items='${newBook}'>
                         <div class="col-6 col-sm-4 col-md-3 book">
-                            <a href="#">
+                            <a href="./detail?bookId=${b.getId()}">
                                 <div class ="book-detail">
                                     <div class = img-wrapper>
                                         <img src="${b.getImgURL()}" alt="${b.title}" /><div class="img-shadow"></div></div>
@@ -87,7 +95,7 @@
                 <div class = "row">
                     <c:forEach var ="b" items='${bestSeller}'>
                         <div class="col-6 col-sm-4 col-md-3 book2">
-                            <a href="#">
+                            <a href="./detail?bookId=${b.getId()}">
                                 <div class ="book-detail">
                                     <div class = img-wrapper>
                                         <img src="${b.getImgURL()}" alt="${b.title}" /></div>

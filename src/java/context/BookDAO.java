@@ -143,6 +143,40 @@ public class BookDAO {
     }
     
     
+    
+    
+    public Book getBookByID(int id){
+        
+        
+        String query = "SELECT * FROM Books where BookID = ? ";
+        try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Book b = new Book(
+                        rs.getInt("BookID"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getString("Descrip"),
+                        rs.getInt("Quantity"),
+                        rs.getDouble("Price"),
+                        rs.getInt("CateID"),
+                        rs.getString("ImgURL")
+                );
+                return b;
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("not found book");
+        return null;
+    }
+    
+    
+    
+    
     public boolean insertBook(Book book) {
         try {
             String query = "INSERT INTO Books(Title, Author, Descrip, Quantity, Price, CateID, ImgURL) VALUES  ( ?, ?, ?, ?, ?, ?, ?)";

@@ -4,21 +4,19 @@
  */
 package controller;
 
-import context.AccountDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
 
 /**
  *
  * @author LENOVO
  */
-//@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+public class CartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,43 +27,19 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private String adminName;
-    private String adminPass;
-    AccountDAO accountDAO = new AccountDAO();
-
-    @Override
-    public void init() throws ServletException {
-        adminName = getServletConfig().getInitParameter("user");
-        adminPass = getServletConfig().getInitParameter("pass");
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-
-        String u = request.getParameter("user");
-
-        String p = request.getParameter("pass");
-
-        HttpSession session = request.getSession();
-        Account acc = accountDAO.checkAccountByUserName(u);
-        if (u.equals(adminName) && p.equals(adminPass)) {
-            session.setAttribute("username", u);
-            session.setAttribute("role", "admin");
-            session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        } else if (accountDAO.checkAccountByUserName(u) != null && acc.getPassWord().equals(p)) {
-            session.setAttribute("username", u);
-            session.setAttribute("user", acc);
-            session.setAttribute("role", "customer");
-            session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            session.setAttribute("disabled", "disabled");
-//            request.getRequestDispatcher("home").forward(request, response);
-            response.sendRedirect("home");
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("username") != null) {
+            request.setAttribute("leftbtn", "Logout");
+            request.setAttribute("leftlink", "logout");
+            request.setAttribute("rightbtn", "Account");
+            request.setAttribute("rightlink", "account");
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
         } else {
-            request.setAttribute("message", "Error name and passwword");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+        
 
     }
 
@@ -81,8 +55,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -96,7 +69,35 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("username") != null) {
+            request.setAttribute("leftbtn", "Logout");
+            request.setAttribute("leftlink", "logout");
+            request.setAttribute("rightbtn", "Account");
+            request.setAttribute("rightlink", "account");
+
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+        
+        
+        String[] selected = request.getParameterValues("isSelected");
+        if (request.getParameter("isSelected") == null) {
+            request.setAttribute("orderStatus", "Choose books to delete!");
+            request.getRequestDispatcher("cart").forward(request, response);
+        }
+        for (String bookID : selected) {
+            int id;
+            try {
+                id = Integer.parseInt(bookID);
+            } catch (NumberFormatException e) {
+                throw new ServletException("invalid id");
+            }
+            String quantity = request.getParameter("quantity_" + bookID);
+            request.setAttribute(bookID, quantity);
+
+        }
+        request.getRequestDispatcher("order.jsp").forward(request, response);
     }
 
     /**
