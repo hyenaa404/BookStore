@@ -54,16 +54,16 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./all-book">All Book</a>
+                        <a class="nav-link" href="./all-book">Product Manage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./fiction">Fiction </a>
+                        <a class="nav-link" href="./fiction">User Manage </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./nonfiction">Nonfiction</a>
+                        <a class="nav-link" href="./nonfiction">Order Manage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./poetry">Poetry </a>
+                        <a class="nav-link" href="./poetry">Discount Manage </a>
                     </li>
                 </ul>
             </div>

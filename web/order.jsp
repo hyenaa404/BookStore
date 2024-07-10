@@ -40,29 +40,37 @@
                 <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Address</th></tr></thead></br>
 
                 <tr>
-                    <td>John Doe</td>
-                    <td>023827348</td>
-                    <td>johndoe97@123</td>
-                    <td>123-Oak Street- London- England</td></tr>
+                    <td>${user.getFullName()}</td>
+                    <td>${user.getPhoneNumber()}</td>
+                    <td>${user.getEmail()}</td>
+                    <td>${user.getAddress()}</</td></tr>
             </table>
+            
+            <p>${message}</p>
             <div class ="center">
-                <button onclick="showInfOverlay()">Edit Inf</button></div>
+                <button onclick="showInfOverlay()">Edit Information</button></div>
             <div id="user-overlay" class ="user-inf overlay center account">
                 <div class="overlay-content">
+                    <form name ="updateInf" action = "order" method ="post">
                     <span class="close-btn" onclick="hideInfOverlay()">&times;</span></br>
 
-                    <label for="fullname">Full Name</label>
-                    <input  type="text" id="fullname" name="fullname" placeholder="Full name" value = "${fullname} " ><br><br>
+                    <label for="fullname">Name</label>
+                    <input  type="text" id="fullname" name="fullname" placeholder="Name" value = "${user.getFullName()} " ><br><br>
 
                     <label for="phonenumer">Phone</label>
-                    <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" value ="${phone} " ><br><br>
+                    <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" value ="${user.getPhoneNumber()} " ><br><br>
 
                     <label for="email">Email</label>
-                    <input  type="text" id="email" name="email" placeholder="Email"value="${mail} " ><br><br>
+                    <input  type="text" id="email" name="email" placeholder="Email"value="${user.getEmail()} " ><br><br>
 
                     <label for="address">Address</label>
-                    <input  type="text" id="address" name="address" placeholder="Adress"value ="${address} " ><br><br>
+                    <input  type="text" id="address" name="address" placeholder="Adress"value ="${user.getAddress()} " ><br><br>
 
+                     <input  type="hidden" id="id" name="id" value ="${user.getId()}" >
+                     <input  type="hidden" id="mt" name="mt" value ="update" >
+
+                     </br><button type='submit'>Save</button>
+                    </form>
                 </div>
             </div>
 

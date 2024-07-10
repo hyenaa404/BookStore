@@ -16,6 +16,7 @@ public class Account {
     private String fullName;
     private String phoneNumber;
     private String email;
+    private String address;
     private int role;
 
     public Account(int id, String userName, String passWord, String fullName, String phoneNumber, String email, int role) {
@@ -36,6 +37,36 @@ public class Account {
         this.email = email;
         this.role = role;
     }
+
+    public Account(int id, String userName, String passWord, String fullName, String phoneNumber, String email, String address, int role) {
+        this.id = id;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.role = role;
+    }
+
+    public Account(String userName, String passWord, String fullName, String phoneNumber, String email, String address, int role) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.role = role;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
 
     public int getId() {
         return id;

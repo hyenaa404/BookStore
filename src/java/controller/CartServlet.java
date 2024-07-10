@@ -30,15 +30,9 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            request.setAttribute("leftbtn", "Logout");
-            request.setAttribute("leftlink", "logout");
-            request.setAttribute("rightbtn", "Account");
-            request.setAttribute("rightlink", "account");
+        
+            
             request.getRequestDispatcher("cart.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
         
 
     }
@@ -70,34 +64,27 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            request.setAttribute("leftbtn", "Logout");
-            request.setAttribute("leftlink", "logout");
-            request.setAttribute("rightbtn", "Account");
-            request.setAttribute("rightlink", "account");
+        
 
-        } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        
-        
         String[] selected = request.getParameterValues("isSelected");
-        if (request.getParameter("isSelected") == null) {
-            request.setAttribute("orderStatus", "Choose books to delete!");
-            request.getRequestDispatcher("cart").forward(request, response);
-        }
-        for (String bookID : selected) {
-            int id;
-            try {
-                id = Integer.parseInt(bookID);
-            } catch (NumberFormatException e) {
-                throw new ServletException("invalid id");
-            }
-            String quantity = request.getParameter("quantity_" + bookID);
-            request.setAttribute(bookID, quantity);
+        if (selected == null) {
+            session.setAttribute("orderStatus", "Choose books to delete!");
+            response.sendRedirect("cart");
+//            request.getRequestDispatcher("cart.jsp").forward(request, response);
+        } else {
+            for (String bookID : selected) {
+                int id;
+                try {
+                    id = Integer.parseInt(bookID);
+                } catch (NumberFormatException e) {
+                    throw new ServletException("invalid id");
+                }
+                String quantity = request.getParameter("quantity_" + bookID);
+                request.setAttribute(bookID, quantity);
 
+            }
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("order.jsp").forward(request, response);
     }
 
     /**

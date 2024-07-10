@@ -14,7 +14,6 @@ public class FormatString {
     public static String formatCurrency(double amount) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String str = decimalFormat.format(amount) + " VND";
-        System.out.println(str);
         return str;
     }
 }

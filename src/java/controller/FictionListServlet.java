@@ -18,7 +18,7 @@ import model.Book;
  *
  * @author LENOVO
  */
-public class AllBookServlet extends HttpServlet {
+public class FictionListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class AllBookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AllBookServlet</title>");            
+            out.println("<title>Servlet FictionListServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AllBookServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FictionListServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +60,7 @@ public class AllBookServlet extends HttpServlet {
             throws ServletException, IOException {
         
         BookDAO bookDAO = new BookDAO();
-        List<Book> all = bookDAO.getBookList();
+        List<Book> fiction = bookDAO.getBookListByCateID(1);
         
         
         
@@ -71,23 +71,19 @@ public class AllBookServlet extends HttpServlet {
         }
 
         
-        int totalBooks = all.size();
+        int totalBooks = fiction.size();
         int totalPages = (int) Math.ceil((double) totalBooks / 24);
 
         
         int startIndex = (currentPage - 1) * 24;
         int endIndex = Math.min(startIndex + 24, totalBooks);
-        List<Book> booksOnPage = all.subList(startIndex, endIndex);
+        List<Book> booksOnPage = fiction.subList(startIndex, endIndex);
 
         
         request.setAttribute("list", booksOnPage);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("totalPages", totalPages);
 
-        
-        
-        
-        
         request.getRequestDispatcher("products-list.jsp").forward(request, response);
     }
 

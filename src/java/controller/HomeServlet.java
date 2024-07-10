@@ -68,10 +68,6 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("newBook", newBook);
         request.setAttribute("recommend", recommend);
         request.setAttribute("bestSeller", bestSeller);
-        request.setAttribute("leftbtn", "Login");
-        request.setAttribute("leftlink", "login");
-        request.setAttribute("rightbtn", "Register");
-        request.setAttribute("rightlink", "register");
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

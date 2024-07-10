@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.admin;
 
-import context.BookDAO;
+import context.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Book;
+import model.Account;
 
 /**
  *
  * @author LENOVO
  */
-public class AllBookServlet extends HttpServlet {
+public class UserManageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class AllBookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AllBookServlet</title>");            
+            out.println("<title>Servlet UserManageServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AllBookServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserManageServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,37 +58,9 @@ public class AllBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountDAO acDAO = new AccountDAO();
+        List<Account> users = acDAO.getAccountList();
         
-        BookDAO bookDAO = new BookDAO();
-        List<Book> all = bookDAO.getBookList();
-        
-        
-        
-        
-        int currentPage = 1;
-        if (request.getParameter("page") != null) {
-            currentPage = Integer.parseInt(request.getParameter("page"));
-        }
-
-        
-        int totalBooks = all.size();
-        int totalPages = (int) Math.ceil((double) totalBooks / 24);
-
-        
-        int startIndex = (currentPage - 1) * 24;
-        int endIndex = Math.min(startIndex + 24, totalBooks);
-        List<Book> booksOnPage = all.subList(startIndex, endIndex);
-
-        
-        request.setAttribute("list", booksOnPage);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-
-        
-        
-        
-        
-        request.getRequestDispatcher("products-list.jsp").forward(request, response);
     }
 
     /**

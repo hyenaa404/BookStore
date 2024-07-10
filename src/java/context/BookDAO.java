@@ -10,19 +10,22 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Book;
+import model.Category;
 
 /**
  *
  * @author LENOVO
  */
 public class BookDAO {
+
     private DBContext dbContext;
-    private List<Book> bookList = new ArrayList<>();
+
     public BookDAO() {
         dbContext = new DBContext();
     }
-    
+
     public List<Book> getBookList() {
+        List<Book> bookList = new ArrayList<>();
         bookList.clear();
         String query = "SELECT * FROM Books";
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
@@ -45,7 +48,7 @@ public class BookDAO {
         }
         return bookList;
     }
-    
+
     public List<Book> getNewBooksList() {
         List<Book> newBook = new ArrayList<>();
         newBook.clear();
@@ -70,7 +73,7 @@ public class BookDAO {
         }
         return newBook;
     }
-    
+
     public List<Book> getBestSellerBooksList() {
         List<Book> bestSeller = new ArrayList<>();
         bestSeller.clear();
@@ -95,7 +98,7 @@ public class BookDAO {
         }
         return bestSeller;
     }
-    
+
     public List<Book> getRecommendBooksList() {
         List<Book> recommend = new ArrayList<>();
         recommend.clear();
@@ -120,37 +123,30 @@ public class BookDAO {
         }
         return recommend;
     }
-    
-    
-    public int getBookID(String title){
-        
-        
+
+    public int getBookID(String title) {
+
         String query = "SELECT * FROM Books where Title = ? ";
         try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1,title);
+            ps.setString(1, title);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt("BookID");
-                
-                
+
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("null");
         return 0;
     }
-    
-    
-    
-    
-    public Book getBookByID(int id){
-        
-        
+
+    public Book getBookByID(int id) {
+
         String query = "SELECT * FROM Books where BookID = ? ";
         try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Book b = new Book(
@@ -164,19 +160,16 @@ public class BookDAO {
                         rs.getString("ImgURL")
                 );
                 return b;
-                
+
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("not found book");
         return null;
     }
-    
-    
-    
-    
+
     public boolean insertBook(Book book) {
         try {
             String query = "INSERT INTO Books(Title, Author, Descrip, Quantity, Price, CateID, ImgURL) VALUES  ( ?, ?, ?, ?, ?, ?, ?)";
@@ -200,7 +193,51 @@ public class BookDAO {
         }
 
     }
-    
-    
-    
+
+    public List<Book> getBookListByCateID(int cate) {
+        List<Book> cateList = new ArrayList<>();
+        String query = "SELECT * FROM Books where CateID = ? ";
+        try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, cate);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Book b = new Book(
+                        rs.getInt("BookID"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getString("Descrip"),
+                        rs.getInt("Quantity"),
+                        rs.getDouble("Price"),
+                        rs.getInt("CateID"),
+                        rs.getString("ImgURL")
+                );
+                cateList.add(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cateList;
+    }
+
+    public Category getCateByID(int id) {
+
+        String query = "SELECT * FROM Categories where CateID = ? ";
+        try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Category c = new Category(
+                        rs.getInt("CateID"),
+                        rs.getString("Name"),
+                        rs.getString("Descrip")
+                );
+                return c;
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

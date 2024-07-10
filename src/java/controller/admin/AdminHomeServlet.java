@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.admin;
 
 import context.BookDAO;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import model.Book;
  *
  * @author LENOVO
  */
-public class AllBookServlet extends HttpServlet {
+public class AdminHomeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +32,19 @@ public class AllBookServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AllBookServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AllBookServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        BookDAO bookDAO = new BookDAO();
+        List<Book> newBook = bookDAO.getNewBooksList();
+        List<Book> recommend = bookDAO.getRecommendBooksList();
+        List<Book> bestSeller = bookDAO.getBestSellerBooksList();
+        request.setAttribute("newBook", newBook);
+        request.setAttribute("recommend", recommend);
+        request.setAttribute("bestSeller", bestSeller);
+        request.setAttribute("leftbtn", "Login");
+        request.setAttribute("leftlink", "login");
+        request.setAttribute("rightbtn", "Register");
+        request.setAttribute("rightlink", "register");
+        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,37 +59,7 @@ public class AllBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        BookDAO bookDAO = new BookDAO();
-        List<Book> all = bookDAO.getBookList();
-        
-        
-        
-        
-        int currentPage = 1;
-        if (request.getParameter("page") != null) {
-            currentPage = Integer.parseInt(request.getParameter("page"));
-        }
-
-        
-        int totalBooks = all.size();
-        int totalPages = (int) Math.ceil((double) totalBooks / 24);
-
-        
-        int startIndex = (currentPage - 1) * 24;
-        int endIndex = Math.min(startIndex + 24, totalBooks);
-        List<Book> booksOnPage = all.subList(startIndex, endIndex);
-
-        
-        request.setAttribute("list", booksOnPage);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-
-        
-        
-        
-        
-        request.getRequestDispatcher("products-list.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

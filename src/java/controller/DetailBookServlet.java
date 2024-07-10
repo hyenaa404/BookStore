@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Book;
+import model.Category;
 
 /**
  *
@@ -35,13 +36,11 @@ public class DetailBookServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            request.setAttribute("leftbtn", "Login");
-            request.setAttribute("leftlink", "login");
-            request.setAttribute("rightbtn", "Register");
-            request.setAttribute("rightlink", "register");
             int id = Integer.parseInt(request.getParameter("bookId"));
             BookDAO bookDAO = new BookDAO();
             Book b = bookDAO.getBookByID(id);
+            Category cate = bookDAO.getCateByID(b.getCateId());
+            request.setAttribute("cateName", cate.getName());
             request.setAttribute("book", b);
 //            out.print(b.getTitle());
             request.getRequestDispatcher("product-details.jsp").forward(request, response);

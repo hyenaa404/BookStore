@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.FileWriter;
+import model.Account;
 
 /**
  *
@@ -58,17 +61,9 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            request.setAttribute("leftbtn", "Logout");
-            request.setAttribute("leftlink", "logout");
-            request.setAttribute("rightbtn", "Account");
-            request.setAttribute("rightlink", "account");
-            request.getRequestDispatcher("order.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        
+
+        request.getRequestDispatcher("home").forward(request, response);
+
     }
 
     /**
@@ -85,35 +80,64 @@ public class OrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            request.setAttribute("leftbtn", "Logout");
-            request.setAttribute("leftlink", "logout");
-            request.setAttribute("rightbtn", "Account");
-            request.setAttribute("rightlink", "account");
-            
+
+
+        if (request.getParameter("mt") != null && request.getParameter("mt").equalsIgnoreCase("update")) {
+            updateInformation(request, response);
         } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        String[] selected = request.getParameterValues("isSelected");
-        
-        
-        if(request.getParameter("isSelected") == null){
-        request.setAttribute("orderStatus", "Choose books to start Order!");
-        request.getRequestDispatcher("cart").forward(request, response);
-        }
-        for (String bookID : selected) {
-            int id;
-            try {
-                id = Integer.parseInt(bookID);
-            } catch (NumberFormatException e) {
-                throw new ServletException("invalid id");
-            }
-            String quantity= request.getParameter("quantity_" + bookID);
+            String[] selected = request.getParameterValues("isSelected");
+
+            if (selected == null) {
+                session.setAttribute("orderStatus", "Choose books to start Order!");
+                response.sendRedirect("cart");
+            } else {
+                for (String bookID : selected) {
+                    int id;
+                    try {
+                        id = Integer.parseInt(bookID);
+                    } catch (NumberFormatException e) {
+                        throw new ServletException("invalid id");
+                    }
+                    String quantity = request.getParameter("quantity_" + bookID);
 //            out.println(quantity +" "+ bookID);
 //            request.setAttribute("quantity_" +bookID, quantity);
 
+                }
+//            response.sendRedirect("order");
+                request.getRequestDispatcher("order.jsp").forward(request, response);
+            }
         }
-        request.getRequestDispatcher("order.jsp").forward(request, response);
+    }
+
+    protected void updateInformation(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        AccountDAO acDAO = new AccountDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        String fullName = request.getParameter("fullname");
+
+        String phoneNumber = request.getParameter("phonenumer");
+
+        String email = request.getParameter("email");
+
+        String address = request.getParameter("address");
+
+        Account ac = acDAO.getAccountById(id);
+        ac.setFullName(fullName);
+        ac.setPhoneNumber(phoneNumber);
+        ac.setEmail(email);
+        ac.setAddress(address);
+
+        if (acDAO.updateInfomation(ac)) {
+            HttpSession session = request.getSession(false);
+            session.setAttribute("user", ac);
+            request.getRequestDispatcher("order.jsp").forward(request, response);
+        } else {
+            request.setAttribute("message", "Error, failed to update information!");
+            request.getRequestDispatcher("order.jsp").forward(request, response);
+        }
+
     }
 
     /**

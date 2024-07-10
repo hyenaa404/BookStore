@@ -4,6 +4,7 @@
  */
 package controller;
 
+import context.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 /**
  *
@@ -32,15 +34,9 @@ public class AccountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            request.setAttribute("leftbtn", "Logout");
-            request.setAttribute("leftlink", "logout");
-            request.setAttribute("rightbtn", "Account");
-            request.setAttribute("rightlink", "account");
+         
             request.getRequestDispatcher("account.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("login").forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,7 +65,38 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        AccountDAO acDAO = new AccountDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        String fullName = request.getParameter("fullname");
+
+        String phoneNumber = request.getParameter("phonenumer");
+
+        String email = request.getParameter("email");
+
+        String userName = request.getParameter("username");
+
+        String passWord = request.getParameter("password");
+        
+        String address = request.getParameter("address");
+
+        Account ac = new Account(id, userName, passWord, fullName, phoneNumber, email, address, 2);
+        
+
+        if (acDAO.updateAccount(ac)) {
+            HttpSession session = request.getSession(false);
+            session.setAttribute("user", ac);
+//            request.getRequestDispatcher("account.jsp").forward(request, response);
         processRequest(request, response);
+            
+        } else {
+            request.setAttribute("message", "Error, failed to update account!");
+            
+            request.getRequestDispatcher("account.jsp").forward(request, response);
+        }
     }
 
     /**

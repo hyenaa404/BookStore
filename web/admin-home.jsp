@@ -27,8 +27,14 @@
     </head>
     <body>
 
-        
-        <%@ include file="/includes/header.jsp" %>
+        <%HttpSession existingSession = request.getSession(false);
+                if (existingSession != null &&  existingSession.getAttribute("username") != null && existingSession.getAttribute("role").equals("admin") ) {
+                  request.setAttribute("leftbtn", "Logout");
+                  request.setAttribute("leftlink", "logout");
+                  request.setAttribute("rightbtn", "Account");
+                  request.setAttribute("rightlink", "account");
+               }%>
+        <%@ include file="/includes/header-admin.jsp" %>
         <div class ="home">
             <div class ="recommend">
                 <h3><a href="./recommend">Recommend</a></h3>

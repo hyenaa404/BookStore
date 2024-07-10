@@ -22,17 +22,10 @@
         <title>T-Read- Best Book store</title>
     </head>
     <body>
-        <%HttpSession existingSession = request.getSession(false);
-                if (existingSession != null &&  existingSession.getAttribute("username") != null) {
-                  request.setAttribute("leftbtn", "Logout");
-                  request.setAttribute("leftlink", "logout");
-                  request.setAttribute("rightbtn", "Account");
-                  request.setAttribute("rightlink", "account");
-            
-               }%>
+        
         <div >
-            
-        <%@ include file="/includes/header2.jsp" %>
+
+            <%@ include file="/includes/header2.jsp" %>
 
             <div class ="details-container row">
                 <div class = "book-img col-12 col-sm-5 col-md-5 col-lg-4" >
@@ -45,7 +38,7 @@
                         <h1 class="title-product">${book.getTitle()}</h1>
                         <div class="group-status">
                             <p><b>Author: </b><a href="#" title="${book.getAuthor()}">${book.getAuthor()}</a></p>
-                            <p><b>Genre: </b><a href="#" title="Nonfiction">Nonfiction</a></p>
+                            <p><b>Genre: </b><a href="#" title="Nonfiction">${cateName}</a></p>
                         </div>
                         <h4 class = "price">
                             <c:out value="${FormatString.formatCurrency(book.getPrice())}" />
@@ -83,10 +76,24 @@
                 <div class ="product-tab">
                     <h4>REVIEW</h4>
                 </div>
-                
-                <div class ="review-content">
-                    <input type = "text" name = "review" placeholder="Enter content...">
-                </div>
+                <form action="review" method="POST">
+                    <div class ="rate-product">
+                        <label for="rating">Rate:</label>
+                        <select name="rating" id="rating">
+                            <option value="1">☆</option>
+                            <option value="2">☆ ☆</option>
+                            <option value="3">☆ ☆ ☆</option>
+                            <option value="4">☆ ☆ ☆ ☆</option>
+                            <option value="5">☆ ☆ ☆ ☆ ☆</option>
+                        </select>
+                    </div>
+                    <div class ="review-content">
+                        <input type = "text" name = "review" placeholder="Enter content...">
+                    </div>
+                    <div class ="center">
+                    <button type="submit">Send</button></div>
+                </form>
+
             </div>
         </div>
         <%@ include file="/includes/footer.jsp" %>

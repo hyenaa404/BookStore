@@ -373,7 +373,7 @@ label {
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
 }
-
+.product-descript button,
 .account button,
 input[type="submit"],
 .cart button,
@@ -395,6 +395,11 @@ input[type="submit"] {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.4);
 }
+/* 
+.product-descript button {
+    margin: auto;
+} */
+
 
 input[type="submit"]:hover {
     background-color: #437150;
@@ -741,6 +746,16 @@ h2 {
 }
 
 /* //-----------------------pruduct-details---------------------------------------- */
+
+.rate-product {
+    padding: 30px 30px 20px 40px;
+}
+
+.rate-product select {
+    border: solid 0.5px #181918;
+    padding: 5px 0px 5px 10px;
+    border-radius: 0px;
+}
 
 .details-container {
     max-width: 1000px;

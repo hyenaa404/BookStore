@@ -23,13 +23,7 @@
     </head>
     <body>
 
-        <%HttpSession existingSession = request.getSession(false);
-                if (existingSession != null &&  existingSession.getAttribute("username") != null) {
-                  request.setAttribute("leftbtn", "Logout");
-                  request.setAttribute("leftlink", "logout");
-                  request.setAttribute("rightbtn", "Account");
-                  request.setAttribute("rightlink", "account");
-               }%>
+        
         <%@ include file="/includes/header.jsp" %>
         <div class ="home">
             <div class ="list-book">
