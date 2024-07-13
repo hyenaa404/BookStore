@@ -37,7 +37,7 @@ public class AllBookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AllBookServlet</title>");            
+            out.println("<title>Servlet AllBookServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AllBookServlet at " + request.getContextPath() + "</h1>");
@@ -58,37 +58,53 @@ public class AllBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         BookDAO bookDAO = new BookDAO();
-        List<Book> all = bookDAO.getBookList();
+        List<Book> bookList;
+        String category = request.getParameter("category");
+        switch (category) {
+            case null:
+                bookList = bookDAO.getBookList();
+                break;
+            case "fiction":
+                bookList = bookDAO.getBookListByCateID(1);
+                break;
+            case "nonfiction":
+                bookList = bookDAO.getBookListByCateID(2);
+                break;
+            case "poetry":
+                bookList = bookDAO.getBookListByCateID(3);
+                break;
+            case "search":
+                String name = request.getParameter("search");
+                bookList = bookDAO.getBookListByTitle(name);
+                break;
+            default:
+                throw new AssertionError();
+        }
         
-        
-        
+        if(bookList.isEmpty()){
+            request.setAttribute("noti", "Books not found!");
+        }
+
         
         int currentPage = 1;
         if (request.getParameter("page") != null) {
             currentPage = Integer.parseInt(request.getParameter("page"));
         }
 
-        
-        int totalBooks = all.size();
+        int totalBooks = bookList.size();
         int totalPages = (int) Math.ceil((double) totalBooks / 24);
 
-        
         int startIndex = (currentPage - 1) * 24;
         int endIndex = Math.min(startIndex + 24, totalBooks);
-        List<Book> booksOnPage = all.subList(startIndex, endIndex);
+        List<Book> booksOnPage = bookList.subList(startIndex, endIndex);
 
-        
         request.setAttribute("list", booksOnPage);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("totalPages", totalPages);
 
-        
-        
-        
-        
-        request.getRequestDispatcher("products-list.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/view/products-list.jsp").forward(request, response);
     }
 
     /**

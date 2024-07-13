@@ -63,11 +63,11 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("role", "customer");
             session.setMaxInactiveInterval(10 * 24 * 60 * 60);
             session.setAttribute("disabled", "disabled");
-//            request.getRequestDispatcher("home").forward(request, response);
+            request.setAttribute("message", " ");
             response.sendRedirect("home");
         } else {
             request.setAttribute("message", "Error name and passwword");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
         }
 
     }
@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
     }
 
     /**

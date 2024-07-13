@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/register.jsp").forward(request, response);
         }
     }
 
@@ -65,7 +65,8 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         AccountDAO acDAO = new AccountDAO();
 
         String fullName = request.getParameter("fullname");
@@ -77,8 +78,11 @@ public class RegisterServlet extends HttpServlet {
         String userName = request.getParameter("user");
 
         String passWord = request.getParameter("pass");
+        
+        String address = request.getParameter("address");
 
-        Account ac = new Account(userName, passWord, fullName, phoneNumber, email, 2);
+        Account ac = new Account(userName, passWord, fullName, phoneNumber, email,address, 2);
+//        out.print(ac.getAddress());
 
         if (acDAO.createAccount(ac)) {
             HttpSession session = request.getSession();
@@ -86,7 +90,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("login");
         } else {
             request.setAttribute("message", "Error, failed to regist new account!");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/register.jsp").forward(request, response);
         }
 
     }

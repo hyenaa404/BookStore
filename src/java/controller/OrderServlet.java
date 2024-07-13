@@ -5,6 +5,9 @@
 package controller;
 
 import context.AccountDAO;
+import context.BookDAO;
+import context.OrderDAO;
+import context.OrderItemDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,7 +17,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import model.Account;
+import model.Book;
+import model.Order;
+import model.OrderItem;
 
 /**
  *
@@ -77,35 +85,41 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession(false);
-
-
-        if (request.getParameter("mt") != null && request.getParameter("mt").equalsIgnoreCase("update")) {
+        String mt = request.getParameter("mt");
+        if (mt != null && mt.equalsIgnoreCase("update")) {
             updateInformation(request, response);
+        } else if (mt != null && mt.equalsIgnoreCase("display")) {
+            displayOrder(request, response);
         } else {
-            String[] selected = request.getParameterValues("isSelected");
+            addOrder(request, response);
+        }
+    }
 
-            if (selected == null) {
-                session.setAttribute("orderStatus", "Choose books to start Order!");
-                response.sendRedirect("cart");
-            } else {
-                for (String bookID : selected) {
-                    int id;
-                    try {
-                        id = Integer.parseInt(bookID);
-                    } catch (NumberFormatException e) {
-                        throw new ServletException("invalid id");
-                    }
-                    String quantity = request.getParameter("quantity_" + bookID);
-//            out.println(quantity +" "+ bookID);
-//            request.setAttribute("quantity_" +bookID, quantity);
-
+    protected void displayOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        String[] selected = request.getParameterValues("isSelected");
+        if (selected == null) {
+            session.setAttribute("cartStatus", "Choose books to start Order!");
+            response.sendRedirect("cart");
+        } else {
+            BookDAO bookDAO = new BookDAO();
+            List<Book> orderList = new ArrayList<>();
+            for (String bookID : selected) {
+                int id;
+                try {
+                    id = Integer.parseInt(bookID);
+                } catch (NumberFormatException e) {
+                    throw new ServletException("invalid id");
                 }
-//            response.sendRedirect("order");
-                request.getRequestDispatcher("order.jsp").forward(request, response);
+                int quantity = Integer.parseInt(request.getParameter("quantity_" + bookID));
+                Book b = bookDAO.getBookByID(id);
+                b.setQuantity(quantity);
+                orderList.add(b);
+
             }
+            session.setAttribute("orderList", orderList);
+            request.getRequestDispatcher("WEB-INF/view/order.jsp").forward(request, response);
         }
     }
 
@@ -132,12 +146,39 @@ public class OrderServlet extends HttpServlet {
         if (acDAO.updateInfomation(ac)) {
             HttpSession session = request.getSession(false);
             session.setAttribute("user", ac);
-            request.getRequestDispatcher("order.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/order.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "Error, failed to update information!");
-            request.getRequestDispatcher("order.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/order.jsp").forward(request, response);
         }
 
+    }
+
+    protected void addOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(false);
+
+        int userID = Integer.parseInt(request.getParameter("userID"));
+        OrderDAO orderDAO = new OrderDAO();
+        Order order = new Order(userID, "pending");
+        int orderID = orderDAO.addOrder(order);
+        List<Book> orderList = (List<Book>) session.getAttribute("orderList");
+        for (Book b : orderList) {
+            int id = b.getId();
+            int quantity = b.getQuantity();
+            OrderItem orderItem = new OrderItem(orderID, id, quantity);
+            OrderItemDAO oiDAO = new OrderItemDAO();
+            if (oiDAO.addOrderItem(orderItem)) {
+                session.setAttribute("alert", "Ordered successfully!");
+            } else {
+                session.setAttribute("alert", "Failed to ordered!");
+                request.getRequestDispatcher("WEB-INF/view/order.jsp").forward(request, response);
+            }
+
+        }
+            request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
     }
 
     /**

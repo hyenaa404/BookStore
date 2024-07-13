@@ -24,7 +24,12 @@ import util.FormatString;
 public class Main {
 
     public static void main(String[] args) {
-//        List<Book> bookList = new ArrayList<>();
+        
+        BookDAO bDAO = new BookDAO();
+       
+        List<Book> bookList = new ArrayList<>();
+        bookList = bDAO.getBookListByTitle("n");
+        System.out.println(bookList.size());
 //        List<Img> imgList = new ArrayList<>();
 //        BookDAO bookDao = new BookDAO();
 ////        ImgDAO imgDao = new ImgDAO();
@@ -111,7 +116,7 @@ public class Main {
 //        }
 //        System.out.println(k);
 
-    AccountDAO acc = new AccountDAO();
+//    AccountDAO acc = new AccountDAO();
 //        System.out.println(acc.checkAccountByUserName("huesuong"));
     }
 

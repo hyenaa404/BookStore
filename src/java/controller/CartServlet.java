@@ -4,6 +4,8 @@
  */
 package controller;
 
+import context.BookDAO;
+import context.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import model.Account;
+import model.Book;
+import model.Cart;
 
 /**
  *
@@ -30,10 +37,19 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        
-            
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
-        
+        BookDAO bookDAO = new BookDAO();
+        CartDAO cartDAO = new CartDAO();
+        Account user = (Account) session.getAttribute("user");
+        List<Cart> cart = cartDAO.getCartByUserID(user.getId());
+        List<Book> cartList = new ArrayList<>();
+        for (Cart c : cart) {
+            Book b = bookDAO.getBookByID(c.getBookID());
+            cartList.add(b);
+            b.setQuantity(c.getQuantity());
+        }
+        session.setAttribute("cart", cartList);
+
+        request.getRequestDispatcher("WEB-INF/view/cart.jsp").forward(request, response);
 
     }
 
@@ -63,27 +79,58 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        
+//        response.setContentType("text/html;charset=UTF-8");
+//        PrintWriter out = response.getWriter();
 
+        if (request.getParameter("isAdd") != null) {
+            addProduct(request, response);
+        } else {
+            deleteProduct(request, response);
+        }
+    }
+
+    private void addProduct(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        int bookID = Integer.parseInt(request.getParameter("bookID"));
+        int userID = Integer.parseInt(request.getParameter("userID"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        Cart c = new Cart(userID, bookID, quantity);
+
+        CartDAO cartDAO = new CartDAO();
+        if (cartDAO.addToCart(c)) {
+            session.setAttribute("alert", "Added to cart successfully!");
+        } else {
+            session.setAttribute("alert", "Failed to add product!");
+        }
+        response.sendRedirect("detail?bookId=" + bookID);
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
         String[] selected = request.getParameterValues("isSelected");
         if (selected == null) {
-            session.setAttribute("orderStatus", "Choose books to delete!");
+            session.setAttribute("cartStatus", "Choose books to delete!");
             response.sendRedirect("cart");
-//            request.getRequestDispatcher("cart.jsp").forward(request, response);
+
         } else {
             for (String bookID : selected) {
-                int id;
+                int id, userID;
                 try {
+                    userID = Integer.parseInt(request.getParameter("userID"));
                     id = Integer.parseInt(bookID);
+                    CartDAO cartDAO = new CartDAO();
+                    if (!cartDAO.deleteCartProduct(id, userID)) {
+                        session.setAttribute("cartStatus", "Cannot delete!");
+                    }
                 } catch (NumberFormatException e) {
                     throw new ServletException("invalid id");
                 }
-                String quantity = request.getParameter("quantity_" + bookID);
-                request.setAttribute(bookID, quantity);
 
             }
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            doGet(request, response);
         }
     }
 

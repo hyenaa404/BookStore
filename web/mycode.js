@@ -45,10 +45,10 @@ function hideInfOverlay() {
 
 
 function increment(button) {
-let input = button.previousElementSibling;
-if (parseInt(input.value) < 10) {
-    input.value = parseInt(input.value) + 1;
-    updateAmount(input);
+    let input = button.previousElementSibling;
+    if (parseInt(input.value) < 10) {
+        input.value = parseInt(input.value) + 1;
+        updateAmount(input);
     }
 }
 
@@ -63,11 +63,11 @@ function decrement(button) {
 function updateAmount(input) {
     let quantity = parseInt(input.value);
     let priceElement = input.closest('.cart-item').querySelector('.price');
-    let price = parseInt(priceElement.textContent.replace(/\./g, '')); // Remove dot separator from price
+    let price = parseInt(priceElement.textContent.split('.')[0]); // Remove dot separator from price
     let amountElement = input.closest('.cart-item').querySelector('.amount');
     let amount = price * quantity;
     amountElement.textContent = formatPrice(amount) + '₫';
-
+    
     console.log("Calling updateAmount for input with value:", input.value);
     updateTotal();
 }
@@ -76,7 +76,9 @@ function updateTotal() {
     let total = 0;
     document.querySelectorAll('.amount').forEach(amountElement => {
         total += parseInt(amountElement.textContent.replace(/\./g, '')); // Remove dot separator from amount
+
     });
+
     document.querySelector('.totals_price').textContent = formatPrice(total) + '₫';
 }
 
@@ -104,41 +106,41 @@ function submitForm(method) {
 
 
 function updateBookVisibility() {
-            var books = document.querySelectorAll('.book');
-            var windowWidth = window.innerWidth;
+    var books = document.querySelectorAll('.book');
+    var windowWidth = window.innerWidth;
 
-            books.forEach(function(book, index) {
-                if (windowWidth < 768) { // xs and sm screens
-                    book.style.display = (index < 6) ? 'block' : 'none';
-                } else { // md and larger screens
-                    book.style.display = (index < 8) ? 'block' : 'none';
-                }
-            });
-            var books2 = document.querySelectorAll('.book2');
-            var windowWidth = window.innerWidth;
-            books2.forEach(function(book2, index) {
-                if (windowWidth < 768) { // xs and sm screens
-                    book2.style.display = (index < 6) ? 'block' : 'none';
-                } else { // md and larger screens
-                    book2.style.display = (index < 8) ? 'block' : 'none';
-                }
-            });
-            var books3 = document.querySelectorAll('.book3');
-            
-            var windowWidth = window.innerWidth;
-            books3.forEach(function(book3, index) {
-                if (windowWidth < 768) { // xs and sm screens
-                    book3.style.display = (index < 6) ? 'block' : 'none';
-                } else { // md and larger screens
-                    book3.style.display = (index < 8) ? 'block' : 'none';
-                }
-            });
+    books.forEach(function (book, index) {
+        if (windowWidth < 768) { // xs and sm screens
+            book.style.display = (index < 6) ? 'block' : 'none';
+        } else { // md and larger screens
+            book.style.display = (index < 8) ? 'block' : 'none';
         }
-        
-        
-        function setRating(ratingElement, rating) {
-            ratingElement.setAttribute('data-rating', rating);
+    });
+    var books2 = document.querySelectorAll('.book2');
+    var windowWidth = window.innerWidth;
+    books2.forEach(function (book2, index) {
+        if (windowWidth < 768) { // xs and sm screens
+            book2.style.display = (index < 6) ? 'block' : 'none';
+        } else { // md and larger screens
+            book2.style.display = (index < 8) ? 'block' : 'none';
         }
+    });
+    var books3 = document.querySelectorAll('.book3');
+
+    var windowWidth = window.innerWidth;
+    books3.forEach(function (book3, index) {
+        if (windowWidth < 768) { // xs and sm screens
+            book3.style.display = (index < 6) ? 'block' : 'none';
+        } else { // md and larger screens
+            book3.style.display = (index < 8) ? 'block' : 'none';
+        }
+    });
+}
+
+
+function setRating(ratingElement, rating) {
+    ratingElement.setAttribute('data-rating', rating);
+}
 
 //        const ratingElement = document.querySelector('.rating');
 //        setRatingFromAttribute(ratingElement);

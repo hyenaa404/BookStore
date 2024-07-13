@@ -35,7 +35,7 @@ public class AccountServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
          
-            request.getRequestDispatcher("account.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
         
     }
 
@@ -95,7 +95,7 @@ public class AccountServlet extends HttpServlet {
         } else {
             request.setAttribute("message", "Error, failed to update account!");
             
-            request.getRequestDispatcher("account.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
         }
     }
 

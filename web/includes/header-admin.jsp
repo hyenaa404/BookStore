@@ -10,7 +10,7 @@
     <div class=" heading "> <!--content header-->
 
         <div id="col1" class="col-md-4          ">  
-            <a href="${pageContext.request.contextPath}">
+            <a href="./admin-home">
             <div id="logo">
                 <img src="./img/logo.png" alt="T-Read" />
             </div>
@@ -19,10 +19,12 @@
 
         <div id="col2" class="col-md-4">
             <!-- Actual search box -->
-            <form name= 'seach' action='search' method = 'post'>
+            <form name= 'seach' action='all-book' method = 'get'>
                 <div class=" search-new ">
                     <div class="input">
-                        <input type="text" name ="search" placeholder="Search..."></div>
+                        <input type="hidden" name ="category" value ="search">
+                        <input type="text" name ="search" placeholder="Search...">
+                    </div>
                 </div>
 
 
@@ -51,13 +53,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}">Home</a>
+                        <a class="nav-link" href="./admin-home">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./all-book">Product Manage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./fiction">User Manage </a>
+                        <a class="nav-link" href="./user-manage">User Manage </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./nonfiction">Order Manage</a>

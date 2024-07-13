@@ -218,6 +218,35 @@ public class BookDAO {
         }
         return cateList;
     }
+    
+    
+    
+    public List<Book> getBookListByTitle(String name) {
+        List<Book> cateList = new ArrayList<>();
+        String query = "SELECT * FROM Books WHERE Title LIKE ?";
+        try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, "%"+name+"%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Book b = new Book(
+                        rs.getInt("BookID"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getString("Descrip"),
+                        rs.getInt("Quantity"),
+                        rs.getDouble("Price"),
+                        rs.getInt("CateID"),
+                        rs.getString("ImgURL")
+                );
+                cateList.add(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cateList;
+    }
+    
+    
 
     public Category getCateByID(int id) {
 

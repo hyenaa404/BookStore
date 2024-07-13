@@ -43,7 +43,7 @@ public class DetailBookServlet extends HttpServlet {
             request.setAttribute("cateName", cate.getName());
             request.setAttribute("book", b);
 //            out.print(b.getTitle());
-            request.getRequestDispatcher("product-details.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/product-details.jsp").forward(request, response);
         }
     }
 

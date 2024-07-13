@@ -11,33 +11,45 @@ import java.util.Date;
  * @author LENOVO
  */
 public class Order {
-//    OrderID INT IDENTITY(1,1) PRIMARY KEY,
-//    CustomerID INT NOT NULL,
-//    SellerID INT NOT NULL,
-//    Status NVARCHAR(30),
-//    TotalAmount DECIMAL(10, 2) NOT NULL CHECK (TotalAmount >= 0),
-//    Address NVARCHAR(50) NOT NULL,
-//    OrderDate DATE NOT NULL DEFAULT GETDATE(),
-//    DiscountID INT NOT NULL
+
     private int orderID;
     private int CustomerID;
     private int sellerID;
     private String status;
     private double totalAmount;
-    private String address;
     private Date orderDate;
     private int discountID;
 
     public Order() {
     }
 
-    public Order(int orderID, int CustomerID, int sellerID, String status, double totalAmount, String address, Date orderDate, int discountID) {
+    public Order(int CustomerID, String status ) {
+        this.CustomerID = CustomerID;
+        this.status = status;
+    }
+
+    public Order(int CustomerID, String status , int discountID) {
+        this.CustomerID = CustomerID;
+        this.status = status;
+        this.discountID = discountID;
+    }
+
+    public Order(int orderID, int CustomerID, String status, double totalAmount, Date orderDate) {
+        this.orderID = orderID;
+        this.CustomerID = CustomerID;
+        this.status = status;
+        this.totalAmount = totalAmount;
+        this.orderDate = orderDate;
+    }
+    
+    
+
+    public Order(int orderID, int CustomerID, int sellerID, String status, double totalAmount, Date orderDate, int discountID) {
         this.orderID = orderID;
         this.CustomerID = CustomerID;
         this.sellerID = sellerID;
         this.status = status;
         this.totalAmount = totalAmount;
-        this.address = address;
         this.orderDate = orderDate;
         this.discountID = discountID;
     }
@@ -82,13 +94,6 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public Date getOrderDate() {
         return orderDate;

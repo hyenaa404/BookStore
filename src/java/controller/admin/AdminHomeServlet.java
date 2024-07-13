@@ -44,7 +44,7 @@ public class AdminHomeServlet extends HttpServlet {
         request.setAttribute("leftlink", "login");
         request.setAttribute("rightbtn", "Register");
         request.setAttribute("rightlink", "register");
-        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/view/admin-home.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

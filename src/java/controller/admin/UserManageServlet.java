@@ -61,6 +61,8 @@ public class UserManageServlet extends HttpServlet {
         AccountDAO acDAO = new AccountDAO();
         List<Account> users = acDAO.getAccountList();
         
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("WEB-INF/view/users-manage.jsp").forward(request, response);
     }
 
     /**

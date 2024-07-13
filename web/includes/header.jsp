@@ -19,10 +19,12 @@
 
         <div id="col2" class="col-md-4">
             <!-- Actual search box -->
-            <form name= 'seach' action='search' method = 'post'>
+            <form name= 'seach' action='all-book' method = 'get'>
                 <div class=" search-new ">
                     <div class="input">
-                        <input type="text" name ="search" placeholder="Search..."></div>
+                        <input type="hidden" name ="category" value ="search">
+                        <input type="text" name ="search" placeholder="Search...">
+                    </div>
                 </div>
 
 
@@ -57,13 +59,13 @@
                         <a class="nav-link" href="./all-book">All Book</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./fiction">Fiction </a>
+                        <a class="nav-link" href="./all-book?category=fiction">Fiction </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./nonfiction">Nonfiction</a>
+                        <a class="nav-link" href="./all-book?category=nonfiction">Nonfiction</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./poetry">Poetry </a>
+                        <a class="nav-link" href="./all-book?category=poetry">Poetry </a>
                     </li>
                 </ul>
             </div>
