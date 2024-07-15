@@ -51,10 +51,10 @@
                     <span class="close-btn" onclick="hideDeleteOverlay()">&times;</span></br>
                     <div class =" account">
                         <h1>Delete Account</h1>
-                        <table class ="list-table" border='1'>
-                            <thead><tr><th>ID</th><th>Name</th><th>User Name</th><th>Select</th></tr></thead></br>
-                            <form name= 'update' action='update' method = 'post'>
-                                <c:forEach var ="u" items='${users}'>
+                        <form name= 'delete' action='user-manage' method = 'post'>
+                            <table class ="list-table" border='1'>
+                                <thead><tr><th>ID</th><th>Name</th><th>User Name</th><th>Select</th></tr></thead></br>
+                                            <c:forEach var ="u" items='${users}'>
                                     <tr>
                                         <td><c:out value="${u.getId()}" /></td>
                                         <td><c:out value="${u.getFullName()}" /></td>
@@ -62,10 +62,10 @@
                                         <td><input name="isDelete" type="checkbox" value =${u.getId()} ></td>
                                     </tr>
                                 </c:forEach>
-                            </form>
-                        </table>
-                        </br>
-                        <tr><button type='submit'>Save</button></tr>
+                            </table>
+                            </br>
+                            <tr><button type='submit'>Save</button></tr>
+                        </form>
 
                     </div>
 
@@ -73,7 +73,13 @@
                     <br/><br/>
                 </div>
             </div>
+            <c:if test="${not empty sessionScope.alert}">
 
+                <script>
+                    alert("${alert}");
+                </script>
+                <%session.setAttribute("alert", null);%>
+            </c:if>
         </div>
 
         <%@ include file="/includes/footer.jsp" %>

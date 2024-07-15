@@ -65,6 +65,7 @@
                                 </div>
                             </c:forEach>
                             <input  type="hidden" id="mt" name="mt" value ="display" >
+                            <input  type="hidden" id="userID" name="userID" value ="${user.getId()}" >
 
                         </div>
 

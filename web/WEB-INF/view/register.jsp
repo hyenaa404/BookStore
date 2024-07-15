@@ -24,17 +24,17 @@
             <h1>Register Account</h1>
             <form action="register" method="post">
 
-                <input  type="text" id="fullname" name="fullname" placeholder="Full name"><br><br>
+                <input  type="text" id="fullname" name="fullname" placeholder="Full name" required><br><br>
 
-                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number"><br><br>
+                <input  type="text" id="phonenumer" name="phonenumer" placeholder="Phone number" required><br><br>
 
-                <input  type="text" id="email" name="email" placeholder="Email"><br><br>
+                <input  type="text" id="email" name="email" placeholder="Email" required><br><br>
 
-                <input  type="text" id="address" name="address" placeholder="Adress" ><br>
+                <input  type="text" id="address" name="address" placeholder="Adress" ><br><br>
 
-                <input  type="text" id="username" name="user" placeholder="User name"><br><br>
+                <input  type="text" id="username" name="user" placeholder="User name" required><br><br>
 
-                <input  type="password" id="password" name="pass" placeholder="Password"><br><br>
+                <input  type="password" id="password" name="pass" placeholder="Password" required><br><br>
 
 
                 <input type="submit" value="Register">

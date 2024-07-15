@@ -144,3 +144,4 @@ function setRating(ratingElement, rating) {
 
 //        const ratingElement = document.querySelector('.rating');
 //        setRatingFromAttribute(ratingElement);
+

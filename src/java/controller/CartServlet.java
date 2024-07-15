@@ -130,7 +130,8 @@ public class CartServlet extends HttpServlet {
                 }
 
             }
-            doGet(request, response);
+            session.setAttribute("cartStatus", "Delete products successfully!");
+            response.sendRedirect("cart");
         }
     }
 

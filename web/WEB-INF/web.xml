@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <display-name>home</display-name>
-    
     <servlet>
         <servlet-name>AdminHomeServlet</servlet-name>
         <servlet-class>controller.admin.AdminHomeServlet</servlet-class>
@@ -9,6 +8,18 @@
     <servlet>
         <servlet-name>UserManageServlet</servlet-name>
         <servlet-class>controller.admin.UserManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrder</servlet-name>
+        <servlet-class>controller.ViewOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderManageServlet</servlet-name>
+        <servlet-class>controller.admin.OrderManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductsManageServlet</servlet-name>
+        <servlet-class>controller.admin.ProductsManageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AllBookServlet</servlet-name>
@@ -18,7 +29,6 @@
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>AdminHomeServlet</servlet-name>
         <url-pattern>/admin-home</url-pattern>
@@ -26,6 +36,18 @@
     <servlet-mapping>
         <servlet-name>UserManageServlet</servlet-name>
         <url-pattern>/user-manage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrder</servlet-name>
+        <url-pattern>/view-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderManageServlet</servlet-name>
+        <url-pattern>/orders-manage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductsManageServlet</servlet-name>
+        <url-pattern>/products-manage</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
@@ -47,11 +69,12 @@
         <url-pattern>/account</url-pattern>
         <url-pattern>/cart</url-pattern>
         <url-pattern>/order</url-pattern>
+        <url-pattern>/view-order</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminAccessFilter</filter-name>
         <url-pattern>/admin-home</url-pattern>
-        <url-pattern>/users-manage</url-pattern>
+        <url-pattern>/user-manage</url-pattern>
         <url-pattern>/products-manage</url-pattern>
         <url-pattern>/discounts-manage</url-pattern>
         <url-pattern>/orders-manage</url-pattern>

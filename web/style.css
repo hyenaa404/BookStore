@@ -372,6 +372,7 @@ label {
 .account input[type="password"] {
     margin-top: 10px;
     width: 50%;
+    max-width: 450px;
     min-width: 200px;
     flex: 1;
     padding: 10px;
@@ -1020,8 +1021,52 @@ strong {
 .col-md-3, .col-sm-4, .col-6{
     overflow: hidden;
 }
-/* ----------------------------------------------------------------------------------------- */
+/* -----------------------------------product mangage------------------------------------------------------ */
 
+
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.action-buttons {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.img-wrapper:hover .action-buttons {
+    display: block;
+}
+
+.btn-update, .btn-delete {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+    background-color: #5cb85c;
+}
+
+.btn-delete:hover {
+    background-color: #d9534f;
+}
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------*/
 
 @media only screen and (max-width: 768px) {
     .heading {

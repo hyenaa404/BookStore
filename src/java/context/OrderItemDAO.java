@@ -6,6 +6,9 @@ package context;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import model.OrderItem;
 
 /**
@@ -38,5 +41,28 @@ public class OrderItemDAO {
             return false;
         }
 
+    }
+    
+    
+    
+    public List<OrderItem> getOrderItemListByOrderID(int orderID) {
+        List<OrderItem> orderItemList = new ArrayList<>();
+        String query = "SELECT * FROM OrderItems where OrderID = ? ";
+        try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, orderID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                OrderItem o = new OrderItem(
+                        rs.getInt("OrderID"),
+                        rs.getInt("BookID"),
+                        rs.getInt("Quantity"),
+                        rs.getDouble("TotalPrice")
+                );
+                orderItemList.add(o);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return orderItemList;
     }
 }

@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Account;
 
@@ -76,7 +77,29 @@ public class UserManageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(false);
+        String[] selected = request.getParameterValues("isDelete");
+        if (selected == null) {
+            session.setAttribute("alert", "Choose user to delete!");
+            response.sendRedirect("user-manage");
+
+        } else {
+            for (String deleteUser : selected) {
+                int id;
+                try {
+                    id = Integer.parseInt(deleteUser);
+                    AccountDAO aDAO = new AccountDAO();
+                    if (!aDAO.deleteUser(id)) {
+                        session.setAttribute("alert", "Cannot delete!");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new ServletException("invalid id");
+                }
+
+            }
+            session.setAttribute("alert", "Delete users successfully!");
+            response.sendRedirect("user-manage");
+        }
     }
 
     /**

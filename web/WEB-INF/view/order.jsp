@@ -74,64 +74,72 @@
                 </div>
             </div>
 
-            
-                <div  class ="products center  ">
-                    <form name= 'process' action='order' method = 'post'>
-                        <div class = "cart-products">
-                            <div class="cart-thead">
-                                <div style="width: 3%" ></div><div style="width: 25%;text-align: left;">Product</div>
-                                <div style="width: 20%;text-align: left;padding-left: 5px;"></div><div id ="head2" style="width: 21%"><span>Price</span></div>
-                                <div style="width: 16%">Quantity</div><div id ="head3" style="width: 13%;text-align: right!important;" >Amount</div></div>
 
-                            <div class="cart-tbody">
-                                <c:forEach var ="book" items='${orderList}'>
-                                    <div class="cart-item">
-                                        <tr>
-                                        <div style="width: 3%" ></div>
-                                        <div style="width: 6%;text-align: left;"><img width="120" height="auto" alt="${book.getTitle()}" src="${book.getImgURL()}"></div>
-                                        <div style="width: 6%" ></div>
-                                        <div id ="col1" style="width: 33%;align-items: flex-start;" class="a-center cart2"><h2 class="product-name" title="${book.getTitle()}"> <a href="./detail?bookId=${book.getId()}">${book.getTitle()}</a><span class="variant-title">Good / Paperback</span> </h2></div>
-                                        <div id ="col2" style="width: 21%;" ><span class ="price">${book.getPrice()}</span></div>
-                                        <div style="width: 16%">
-                                            <div class="number-input">
-                                                <input type='number' id=''${book.getId()}' name ='quantity_${book.getId()}' class ='quantity' value='${book.getQuantity()}' min='1' max='10'onchange='updateAmount(this)'>
-                                                
-                                            </div></div>
-                                        <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >
-                                            <span class="amount"></span>
-                                        </div>
+            <div  class ="products center  ">
+                <form name= 'process' action='order' method = 'post'>
+                    <div class = "cart-products">
+                        <div class="cart-thead">
+                            <div style="width: 3%" ></div><div style="width: 25%;text-align: left;">Product</div>
+                            <div style="width: 20%;text-align: left;padding-left: 5px;"></div><div id ="head2" style="width: 21%"><span>Price</span></div>
+                            <div style="width: 16%">Quantity</div><div id ="head3" style="width: 13%;text-align: right!important;" >Amount</div></div>
 
-                                        </tr>
+                        <div class="cart-tbody">
+                            <c:forEach var ="book" items='${orderList}'>
+                                <div class="cart-item">
+                                    <tr>
+                                    <div style="width: 3%" ></div>
+                                    <div style="width: 6%;text-align: left;"><img width="120" height="auto" alt="${book.getTitle()}" src="${book.getImgURL()}"></div>
+                                    <div style="width: 6%" ></div>
+                                    <div id ="col1" style="width: 33%;align-items: flex-start;" class="a-center cart2"><h2 class="product-name" title="${book.getTitle()}"> <a href="./detail?bookId=${book.getId()}">${book.getTitle()}</a><span class="variant-title">Good / Paperback</span> </h2></div>
+                                    <div id ="col2" style="width: 21%;" ><span class ="price">${book.getPrice()}</span></div>
+                                    <div style="width: 16%">
+                                        <div class="number-input">
+                                            <input type='number' id=''${book.getId()}' name ='quantity_${book.getId()}' class ='quantity' value='${book.getQuantity()}' min='1' max='10'onchange='updateAmount(this)'>
+
+                                        </div></div>
+                                    <div id = "col3"style="width: 13%;text-align: right!important;align-items: flex-end;padding-right: 0" >
+                                        <span class="amount"></span>
                                     </div>
-                                </c:forEach>
-                                <input type = "hidden" name ="userID" value = "${user.getId()}">
-                                <input  type="hidden" id="mt" name="mt" value ="order" >
 
-                            </div>
+                                    </tr>
+                                </div>
+                            </c:forEach>
+                            <input type = "hidden" name ="userID" value = "${user.getId()}">
+                            <input  type="hidden" id="mt" name="mt" value ="order" >
 
-                            <table class = "total-table">
-                                <tr>
-                                    <td class = "a-right"><span class="total_tt">Total:</span> 
-                                        <span class="totals_price"></span></td></tr>
-                            </table>
                         </div>
-                        <button type="submit" ">Order</button></tr>
-                    </form>
-                    
-            
+
+                        <table class = "total-table">
+                            <tr>
+                                <td class = "a-right"><span class="total_tt">Total:</span> 
+                                    <span class="totals_price"></span></td></tr>
+                        </table>
+                    </div>
+                    <button type="submit" ">Order</button></tr>
+                </form>
+
+
+            </div>
+
+            <c:if test="${not empty sessionScope.alert}">
+
+                <script>
+                    alert("${alert}");
+                </script>
+                <%session.setAttribute("alert", null);%>
+            </c:if>
         </div>
-    </div>
 
 
 
 
 
 
-<%@ include file="/includes/footer.jsp" %>
+        <%@ include file="/includes/footer.jsp" %>
 
-<script src="js/Jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
+        <script src="js/Jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>
 
 

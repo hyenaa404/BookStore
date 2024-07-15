@@ -25,7 +25,7 @@
 
         <div>
             <div class ="center account">
-                <h1>Account information</h1>
+                <h1>Account Information</h1>
                 <label for="username">Full Name</label>
                 <input  type="text" id="fullname" name="fullname" placeholder="Full name" value ="${user.getFullName()}" disabled><br><br>
 
@@ -40,7 +40,7 @@
 
                 <label for="username">Username:</label>
                 <input  type="text" id="username" name="user" placeholder="User name"value ="${user.getUserName()}" disabled><br><br>
-                <button onclick="showUpdateAccountOverlay()">Update information</button>
+                <button onclick="showUpdateAccountOverlay()">Update Information</button>
 
             </div>
 
@@ -50,14 +50,16 @@
                     <thead>
                         <tr><th>Order</th><th>Date</th><th>Address</th><th>Order value</th><th>Transport</th></tr></br>
                     </thead>
-                    <tr>
+                    <c:forEach var ="o" items='${listUserOrder}'>
+                        <tr>
+                            <td name='order'><a href="./view-order?orderID=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                            <td name='date'><a href="./view-order?orderID=${o.getOrderID()}">${o.getOrderDate()}</a></td>
+                            <td name='address'><a href="./view-order?orderID=${o.getOrderID()}">${user.getAddress()}</a></td>
+                            <td name='value'><a href="./view-order?orderID=${o.getOrderID()}">${o.getTotalAmount()}</a></td>
+                            <td name='status'><a href="./view-order?orderID=${o.getOrderID()}">${o.getStatus()}</a></td>
+                        </tr>
 
-                        <td name ='order'>Order 01</td>
-                        <td name ='date'>01/01/2011</td>
-                        <td name ='address'>29 An Hai - Ngu Hanh Son - Danang</td>
-                        <td name ='value'>299.000</td>
-                        <td name ='status'>Shipped</td>
-                    </tr>
+                    </c:forEach>
 
                 </table>
 
@@ -101,7 +103,7 @@
             <c:if test="${not empty sessionScope.alert}">
 
                 <script>
-                alert("${alert}");
+                    alert("${alert}");
                 </script>
                 <%session.setAttribute("alert", null);%>
             </c:if>

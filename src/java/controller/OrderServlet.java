@@ -162,7 +162,7 @@ public class OrderServlet extends HttpServlet {
 
         int userID = Integer.parseInt(request.getParameter("userID"));
         OrderDAO orderDAO = new OrderDAO();
-        Order order = new Order(userID, "pending");
+        Order order = new Order(userID, "Pending");
         int orderID = orderDAO.addOrder(order);
         List<Book> orderList = (List<Book>) session.getAttribute("orderList");
         for (Book b : orderList) {
@@ -174,11 +174,11 @@ public class OrderServlet extends HttpServlet {
                 session.setAttribute("alert", "Ordered successfully!");
             } else {
                 session.setAttribute("alert", "Failed to ordered!");
-                request.getRequestDispatcher("WEB-INF/view/order.jsp").forward(request, response);
+               response.sendRedirect("cart");
             }
 
         }
-            request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
+            response.sendRedirect("account");
     }
 
     /**

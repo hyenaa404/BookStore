@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", u);
             session.setAttribute("role", "admin");
             session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            request.getRequestDispatcher("admin-home").forward(request, response);
+            response.sendRedirect("admin-home");
         } else if (accountDAO.checkAccountByUserName(u) != null && acc.getPassWord().equals(p)) {
 //            if (acc.getAddress()==null){
 //                acc.setAddress("Not update yet!");

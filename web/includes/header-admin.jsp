@@ -56,13 +56,13 @@
                         <a class="nav-link" href="./admin-home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./all-book">Product Manage</a>
+                        <a class="nav-link" href="./products-manage">Product Manage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./user-manage">User Manage </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./nonfiction">Order Manage</a>
+                        <a class="nav-link" href="./orders-manage">Order Manage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./poetry">Discount Manage </a>

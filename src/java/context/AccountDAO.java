@@ -174,4 +174,15 @@ public class AccountDAO {
         return accountList;
     }
     
+    public boolean deleteUser( int userID) {
+        String query = "DELETE FROM Users WHERE UserID = ?";
+        try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, userID);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
 }

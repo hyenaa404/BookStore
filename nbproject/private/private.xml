@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/CartDAO.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/OrderServlet.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/cart.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/order.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/view-order.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/account.jsp</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/CartServlet.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/model/Order.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/AccountDAO.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/orders-manage.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/admin/OrderManageServlet.java</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/OrderDAO.java</file>
         </group>
     </open-files>

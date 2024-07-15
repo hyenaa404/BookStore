@@ -58,7 +58,9 @@
                             </div>
                             <div class ="add-cart-btn">
                                 <h4 class="status">New / Hardback: ${FormatString.formatCurrency(book.getPrice())}</h4>
+                                <c:if test="${not empty sessionScope.username && sessionScope.role != 'admin'}">
                                 <button id ="cart-btn">Add to cart</button>
+                                </c:if>
                             </div>
                         </form>
 

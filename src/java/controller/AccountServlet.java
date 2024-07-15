@@ -5,6 +5,8 @@
 package controller;
 
 import context.AccountDAO;
+import context.OrderDAO;
+import context.OrderItemDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +15,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import model.Account;
+import model.Order;
+import model.OrderItem;
 
 /**
  *
@@ -33,11 +39,20 @@ public class AccountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
-         
-            request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
-        
+        Account user = (Account) session.getAttribute("user");
+        if(user== null){
+            response.sendRedirect("admin-home");
+        }else{
+        OrderDAO oDAO = new OrderDAO();
+        List<Order> oList = oDAO.getOrderListByUserID(user.getId());
+        session.setAttribute("listUserOrder", oList);
+        request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
+        }
     }
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,8 +81,11 @@ public class AccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        updateAccountInformation(request, response);
+    }
+
+    private void updateAccountInformation(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         AccountDAO acDAO = new AccountDAO();
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -80,21 +98,20 @@ public class AccountServlet extends HttpServlet {
         String userName = request.getParameter("username");
 
         String passWord = request.getParameter("password");
-        
+
         String address = request.getParameter("address");
 
         Account ac = new Account(id, userName, passWord, fullName, phoneNumber, email, address, 2);
-        
 
         if (acDAO.updateAccount(ac)) {
             HttpSession session = request.getSession(false);
             session.setAttribute("user", ac);
 //            request.getRequestDispatcher("account.jsp").forward(request, response);
-        processRequest(request, response);
-            
+            processRequest(request, response);
+
         } else {
             request.setAttribute("message", "Error, failed to update account!");
-            
+
             request.getRequestDispatcher("WEB-INF/view/account.jsp").forward(request, response);
         }
     }
