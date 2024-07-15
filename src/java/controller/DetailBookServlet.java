@@ -5,6 +5,7 @@
 package controller;
 
 import context.BookDAO;
+import context.ReviewDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,8 +13,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import model.Book;
 import model.Category;
+import model.Review;
 
 /**
  *
@@ -38,11 +41,20 @@ public class DetailBookServlet extends HttpServlet {
 
             int id = Integer.parseInt(request.getParameter("bookId"));
             BookDAO bookDAO = new BookDAO();
+            ReviewDAO rDAO = new ReviewDAO();
             Book b = bookDAO.getBookByID(id);
             Category cate = bookDAO.getCateByID(b.getCateId());
+            List<Review> rList = rDAO.getReviewListByBookID(id);
+            int rating = rDAO.getRatingByBookID(id);
+            if (rating == 0) {
+                request.setAttribute("ratingStatus", "Not rating yet!");
+            } else {
+                request.setAttribute("ratingStatus", "");
+            }
             request.setAttribute("cateName", cate.getName());
             request.setAttribute("book", b);
-//            out.print(b.getTitle());
+            request.setAttribute("reviewList", rList);
+            request.setAttribute("rating", rating);
             request.getRequestDispatcher("WEB-INF/view/product-details.jsp").forward(request, response);
         }
     }
@@ -73,7 +85,14 @@ public class DetailBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int rating = Integer.parseInt(request.getParameter("rating"));
+        String comment = request.getParameter("comment");
+        int bookID = Integer.parseInt(request.getParameter("bookID"));
+        int userID = Integer.parseInt(request.getParameter("userID"));
+        Review r = new Review(bookID, userID, rating, comment);
+        ReviewDAO rDAO = new ReviewDAO();
+        rDAO.addReview(r);
+        response.sendRedirect("detail?bookId="+bookID);
     }
 
     /**

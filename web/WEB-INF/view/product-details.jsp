@@ -58,13 +58,14 @@
                             </div>
                             <div class ="add-cart-btn">
                                 <h4 class="status">New / Hardback: ${FormatString.formatCurrency(book.getPrice())}</h4>
-                                <c:if test="${not empty sessionScope.username && sessionScope.role != 'admin'}">
-                                <button id ="cart-btn">Add to cart</button>
+                                <c:if test="${sessionScope.role != 'admin'}">
+                                    <button id ="cart-btn">Add to cart</button>
                                 </c:if>
                             </div>
                         </form>
 
-                        <div class="rating " data-rating="3"></div>
+                        <div class="rating " data-rating="${rating}"></div>
+                        <p id = "ratingStatus">${ratingStatus}</p>
                         <div class ="rating-border"></div>
                     </div>
                 </div>
@@ -84,25 +85,36 @@
                 <div class ="product-tab">
                     <h4>REVIEW</h4>
                 </div>
-                <form action="review" method="POST">
-                    <div class ="rate-product">
-                        <label for="rating">Rate:</label>
-                        <select name="rating" id="rating">
-                            <option value="1">⭐</option>
-                            <option value="2">⭐ ⭐</option>
-                            <option value="3">⭐ ⭐ ⭐</option>
-                            <option value="4">⭐ ⭐ ⭐ ⭐</option>
-                            <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
-                        </select>
-                    </div>
-                    <div class ="review-content">
-                        <input type = "text" name = "review" placeholder="Enter content...">
-                    </div>
-                    <div class ="center">
-                        <button type="submit">Send</button></div>
+                <form action="detail" method="POST">
+                    <c:if test="${sessionScope.role != null}">
+                        <div class ="rate-product">
+                            <label for="rating">Rate:</label>
+                            <select name="rating" id="rating">
+                                <option value="1">⭐</option>
+                                <option value="2">⭐ ⭐</option>
+                                <option value="3">⭐ ⭐ ⭐</option>
+                                <option value="4">⭐ ⭐ ⭐ ⭐</option>
+                                <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+                            </select>
+                        </div>
+                        <div class ="review-content">
+                            <input type = "text" name = "comment" placeholder="Enter content...">
+                        </div>
+
+                        <input type = "hidden" name ="bookID" value = "${book.getId()}">
+                        <input type = "hidden" name ="userID" value = "${user.getId()}">
+                        <div class ="center">
+                            <button type="submit">Send</button></div>
+                        </c:if>
                 </form>
 
+                <c:forEach var ="b" items='${reviewList}'>
+                    <p>@${b.getUserId()} : ${b.getComment()}</p>
+
+                </c:forEach>
             </div>
+
+
         </div>
         <%@ include file="/includes/footer.jsp" %>
 

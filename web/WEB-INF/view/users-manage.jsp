@@ -29,10 +29,11 @@
             <div id ="order-history account" class ="center account">
                 <h1>Users Information</h1>
                 <table class ="list-table" border='1'>
-                    <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>User Name</th></tr></thead></br>
+                    <thead><tr><th>Role</th><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>User Name</th></tr></thead></br>
 
                     <c:forEach var ="u" items='${users}'>
                         <tr>
+                            <td><c:out value="${u.getRole()}" /></td>
                             <td><c:out value="${u.getId()}" /></td>
                             <td><c:out value="${u.getFullName()}" /></td>
                             <td><c:out value="${u.getPhoneNumber()}" /></td>
@@ -40,7 +41,7 @@
                             <td><c:out value="${u.getUserName()}" /></td></tr>
                         </c:forEach>
                 </table>
-                </br>
+                
 
                 <button onclick="showDeleteOverlay()">Delete Account</button>
             </div>
@@ -70,7 +71,6 @@
                     </div>
 
 
-                    <br/><br/>
                 </div>
             </div>
             <c:if test="${not empty sessionScope.alert}">

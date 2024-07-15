@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,6 +40,9 @@
 
 
                 <input type="submit" value="Register">
+                <c:if test="${not empty sessionScope.username && sessionScope.role == 'admin'}">
+                 <input type="submit" name ="sellerRegister" value="Seller Register">
+                </c:if>
             </form>
             </br> <p>${message}</p>
 

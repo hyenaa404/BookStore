@@ -218,14 +218,12 @@ public class BookDAO {
         }
         return cateList;
     }
-    
-    
-    
+
     public List<Book> getBookListByTitle(String name) {
         List<Book> cateList = new ArrayList<>();
         String query = "SELECT * FROM Books WHERE Title LIKE ?";
         try (Connection con = dbContext.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, "%"+name+"%");
+            ps.setString(1, "%" + name + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Book b = new Book(
@@ -245,9 +243,23 @@ public class BookDAO {
         }
         return cateList;
     }
-    
-    
 
+    
+    
+    public boolean deleteBookByID( int bookID) {
+        String query = "DELETE FROM Books WHERE BookID = ?";
+        try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, bookID);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    
+    
+    
     public Category getCateByID(int id) {
 
         String query = "SELECT * FROM Categories where CateID = ? ";
@@ -269,4 +281,29 @@ public class BookDAO {
         }
         return null;
     }
+
+    public boolean updateBook(Book b) {
+        try {
+            String query = "UPDATE Books SET Title = ?, Author = ?, Descrip = ?, Quantity = ?, CateID=?, Price = ?, ImgURL = ? WHERE BookID = ?";
+            Connection conn = dbContext.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, b.getTitle());
+            ps.setString(2, b.getAuthor());
+            ps.setString(3, b.getDescrip());
+            ps.setInt(4, b.getQuantity());
+            ps.setInt(5, b.getCateId());
+            ps.setDouble(6, b.getPrice());
+            ps.setString(7, b.getImgURL());
+            ps.setInt(8, b.getId());
+
+            ps.executeUpdate();
+            dbContext.closeConnection(conn);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 }

@@ -19,7 +19,7 @@
 
         <div id="col2" class="col-md-4">
             <!-- Actual search box -->
-            <form name= 'seach' action='all-book' method = 'get'>
+            <form name= 'seach' action='products-manage' method = 'get'>
                 <div class=" search-new ">
                     <div class="input">
                         <input type="hidden" name ="category" value ="search">

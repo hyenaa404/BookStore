@@ -42,6 +42,27 @@ function hideInfOverlay() {
 
 
 
+function showUpdateProductOverlay() {
+    document.getElementById("update-product-overlay").style.display = "block";
+}
+
+function hideUpdateProductOverlay() {
+    document.getElementById("update-product-overlay").style.display = "none";
+}
+
+
+
+function showAddProductOverlay() {
+    document.getElementById("add-product-overlay").style.display = "block";
+}
+
+function hideAddProductOverlay() {
+    document.getElementById("add-product-overlay").style.display = "none";
+}
+
+
+
+
 
 
 function increment(button) {
@@ -145,3 +166,23 @@ function setRating(ratingElement, rating) {
 //        const ratingElement = document.querySelector('.rating');
 //        setRatingFromAttribute(ratingElement);
 
+function updateButton(button) {
+    const bookId = button.getAttribute('data-bookid');
+    const title = button.getAttribute('data-title');
+    const author = button.getAttribute('data-author');
+    const price = button.getAttribute('data-price');
+    const quantity = button.getAttribute('data-quantity');
+    const description = button.getAttribute('data-description');
+    const imgURL = button.getAttribute('data-imgurl');
+
+
+    document.getElementById('overlayBookId').value = bookId;
+    document.getElementById('overlayTitle').value = title;
+    document.getElementById('overlayAuthor').value = author;
+    document.getElementById('overlayPrice').value = price;
+    document.getElementById('overlayQuantity').value = quantity;
+    document.getElementById('overlayDescription').value = description;
+    document.getElementById('overlayImgURL').value = imgURL;
+    
+    document.getElementById('bookOverlay').style.display = 'flex';
+}

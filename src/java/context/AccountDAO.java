@@ -174,6 +174,35 @@ public class AccountDAO {
         return accountList;
     }
     
+    
+    
+    
+    public List<Account> getCustomerList() {
+        List<Account> accountList = new ArrayList<>();
+        accountList.clear();
+        String query = "SELECT * FROM Users where role like 2";
+        try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Account account = new Account(
+                        rs.getInt("UserID"),
+                        rs.getString("UserName"),
+                        rs.getString("Pass"),
+                        rs.getString("FullName"),
+                        rs.getString("PhoneNumber"),
+                        rs.getString("Email"),
+                        rs.getString("Address"),
+                        rs.getInt("Role")
+                );
+                accountList.add(account);
+            }
+            dbContext.closeConnection(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return accountList;
+    }
+    
+    
     public boolean deleteUser( int userID) {
         String query = "DELETE FROM Users WHERE UserID = ?";
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {

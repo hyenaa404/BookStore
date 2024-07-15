@@ -54,17 +54,26 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("role", "admin");
             session.setMaxInactiveInterval(10 * 24 * 60 * 60);
             response.sendRedirect("admin-home");
-        } else if (accountDAO.checkAccountByUserName(u) != null && acc.getPassWord().equals(p)) {
+        } else if (acc != null && acc.getPassWord().equals(p)) {
 //            if (acc.getAddress()==null){
 //                acc.setAddress("Not update yet!");
 //            }
             session.setAttribute("username", u);
             session.setAttribute("user", acc);
-            session.setAttribute("role", "customer");
-            session.setMaxInactiveInterval(10 * 24 * 60 * 60);
-            session.setAttribute("disabled", "disabled");
-            request.setAttribute("message", " ");
-            response.sendRedirect("home");
+            if (acc.getRole() == 2) {
+                session.setAttribute("role", "customer");
+                session.setMaxInactiveInterval(10 * 24 * 60 * 60);
+                session.setAttribute("disabled", "disabled");
+                request.setAttribute("message", " ");
+                response.sendRedirect("home");
+            } else {
+                session.setAttribute("role", "seller");
+                session.setMaxInactiveInterval(10 * 24 * 60 * 60);
+                session.setAttribute("disabled", "disabled");
+                request.setAttribute("message", " ");
+                response.sendRedirect("admin-home");
+            }
+            
         } else {
             request.setAttribute("message", "Error name and passwword");
             request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
@@ -84,7 +93,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
     }
 

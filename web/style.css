@@ -14,7 +14,7 @@ td {
     font-family: Consolas, monospace;
 }
 
-.noti p{
+.noti p {
     margin: 40px;
     font-size: 20px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -60,6 +60,7 @@ table {
     padding: 0 10px 0 0;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px #000;
+    margin-top: 30px;
 }
 
 .close-btn {
@@ -381,6 +382,21 @@ label {
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
 }
+
+.overlay input,
+.product select {
+    margin-top: 10px;
+    width: 50%;
+    max-width: 450px;
+    min-width: 200px;
+    flex: 1;
+    padding: 10px;
+    border: 0px solid #49694B;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.1);
+}
+
 .product-descript button,
 .account button,
 input[type="submit"],
@@ -403,6 +419,7 @@ input[type="submit"] {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0.5, 0.4);
 }
+
 /* 
 .product-descript button {
     margin: auto;
@@ -675,14 +692,14 @@ h2 {
 
 .home .new-book h3 a,
 .home .best-seller h3 a,
-.home .recommend h3 a ,
+.home .recommend h3 a,
 .list-book h3 a {
     color: #fff;
     font-weight: 490;
     font-style: oblique;
 }
 
-.home .img-wrapper{
+.home .img-wrapper {
     width: 100%;
     height: 0;
     padding-bottom: calc(100%* 50 / 30);
@@ -755,7 +772,11 @@ h2 {
 
 /* //-----------------------pruduct-details---------------------------------------- */
 
-
+#ratingStatus {
+    margin-bottom: 0px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
 .rate-product select {
     border: solid 0.5px #181918;
@@ -849,15 +870,16 @@ strong {
 
 .add-cart-btn {
     width: 100%;
-    
+
 }
-.status{
+
+.status {
     color: dimgray;
     font-size: 13px;
     font-weight: 500;
     margin-top: 40px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    
+
 }
 
 #cart-btn {
@@ -879,13 +901,15 @@ strong {
     font-size: 1.5em;
     color: #eb9800;
 }
-.rating-border{
+
+.rating-border {
     width: 140px;
     content: '☆ ☆ ☆ ☆ ☆';
     position: relative;
     font-size: 1.5em;
     color: #eb9800;
 }
+
 .rating-border::before {
     content: '☆ ☆ ☆ ☆ ☆';
     color: #ffa806;
@@ -896,6 +920,7 @@ strong {
     white-space: nowrap;
     transition: width 0.2s;
 }
+
 .rating::before {
     content: '★ ★ ★ ★ ★';
     color: #ffa806;
@@ -907,11 +932,26 @@ strong {
     white-space: nowrap;
     transition: width 0.2s;
 }
-.rating[data-rating="1"]::before { width: 20px; }
-.rating[data-rating="2"]::before { width: 50px; }
-.rating[data-rating="3"]::before { width: 80px; }
-.rating[data-rating="4"]::before { width: 105px; }
-.rating[data-rating="5"]::before { width: 140px; }
+
+.rating[data-rating="1"]::before {
+    width: 20px;
+}
+
+.rating[data-rating="2"]::before {
+    width: 50px;
+}
+
+.rating[data-rating="3"]::before {
+    width: 80px;
+}
+
+.rating[data-rating="4"]::before {
+    width: 105px;
+}
+
+.rating[data-rating="5"]::before {
+    width: 140px;
+}
 
 
 
@@ -954,6 +994,7 @@ strong {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 15px;
 }
+
 .product-descript .review-content {
     margin: auto;
     max-width: 1000px;
@@ -971,7 +1012,8 @@ strong {
     margin-bottom: 50px;
 }
 
-.pagination-1 a, .home span {
+.pagination-1 a,
+.home span {
     font-size: 14.5px;
     display: flex;
     justify-content: center;
@@ -1003,7 +1045,7 @@ strong {
     background-color: #494f4c;
     color: white;
     border: 1px solid #181918;
-    
+
 }
 
 #none {
@@ -1018,9 +1060,12 @@ strong {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.col-md-3, .col-sm-4, .col-6{
+.col-md-3,
+.col-sm-4,
+.col-6 {
     overflow: hidden;
 }
+
 /* -----------------------------------product mangage------------------------------------------------------ */
 
 
@@ -1043,7 +1088,8 @@ strong {
     display: block;
 }
 
-.btn-update, .btn-delete {
+.btn-update,
+.btn-delete {
     display: inline-block;
     margin: 5px;
     padding: 10px 15px;
@@ -1064,6 +1110,43 @@ strong {
 
 
 
+.sticky-button {
+    /* position: -webkit-sticky; */
+    position: sticky;
+    bottom: 20px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    border-radius: 50%;
+    background-color: #49694b;
+    color: #f0efef;
+    font-size: 35px;
+    font-weight: 700;
+    margin-left: 20px;
+    padding-bottom: 10px;
+    line-height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-decoration: none;
+}
+
+.sticky-button abbr {
+    text-decoration: none;
+}
+
+.home {
+    position: relative;
+}
+
+.sticky-button:hover {
+    background-color: #7b807b;
+}
 
 
 /*-----------------------------------------------------------------------------------------*/
@@ -1129,17 +1212,17 @@ strong {
         font-size: 14px;
     }
 
-    
-#cart-btn {
-    margin: 40px 0 40px 0;
-    height: 50px;
-    width: 100%;
-    border-radius: 3px;
-    background-color: #49694B;
-    border: 1px;
-    color: #F3F3F3;
-    font-weight: 600;
-}
+
+    #cart-btn {
+        margin: 40px 0 40px 0;
+        height: 50px;
+        width: 100%;
+        border-radius: 3px;
+        background-color: #49694B;
+        border: 1px;
+        color: #F3F3F3;
+        font-weight: 600;
+    }
 
     /* -----------------------cart------------------ */
     /* #col2, #col3, #head2, #head3{

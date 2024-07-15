@@ -59,8 +59,14 @@ public class UserManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
         AccountDAO acDAO = new AccountDAO();
-        List<Account> users = acDAO.getAccountList();
+        List<Account> users;
+        if(session.getAttribute("role").equals("admin")){
+            users = acDAO.getAccountList();
+        }else{
+            users = acDAO.getCustomerList();
+        }
         
         request.setAttribute("users", users);
         request.getRequestDispatcher("WEB-INF/view/users-manage.jsp").forward(request, response);

@@ -65,8 +65,17 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        if (request.getParameter("sellerRegister") == null) {
+            registerCustomer(request, response);
+        } else {
+            registerSeller(request, response);
+        }
+
+    }
+
+    private void registerCustomer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         AccountDAO acDAO = new AccountDAO();
 
         String fullName = request.getParameter("fullname");
@@ -78,11 +87,10 @@ response.setContentType("text/html;charset=UTF-8");
         String userName = request.getParameter("user");
 
         String passWord = request.getParameter("pass");
-        
+
         String address = request.getParameter("address");
 
-        Account ac = new Account(userName, passWord, fullName, phoneNumber, email,address, 2);
-//        out.print(ac.getAddress());
+        Account ac = new Account(userName, passWord, fullName, phoneNumber, email, address, 2);
 
         if (acDAO.createAccount(ac)) {
             HttpSession session = request.getSession();
@@ -92,7 +100,35 @@ response.setContentType("text/html;charset=UTF-8");
             request.setAttribute("message", "Error, failed to regist new account!");
             request.getRequestDispatcher("WEB-INF/view/register.jsp").forward(request, response);
         }
+    }
+    
+    private void registerSeller(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        AccountDAO acDAO = new AccountDAO();
+
+        String fullName = request.getParameter("fullname");
+
+        String phoneNumber = request.getParameter("phonenumer");
+
+        String email = request.getParameter("email");
+
+        String userName = request.getParameter("user");
+
+        String passWord = request.getParameter("pass");
+
+        String address = request.getParameter("address");
+
+        Account ac = new Account(userName, passWord, fullName, phoneNumber, email, address, 1);
+
+        if (acDAO.createAccount(ac)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("message", "Register successfully! Login to continue.");
+            response.sendRedirect("login");
+        } else {
+            request.setAttribute("message", "Error, failed to regist new account!");
+            request.getRequestDispatcher("WEB-INF/view/register.jsp").forward(request, response);
+        }
     }
 
     /**

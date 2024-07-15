@@ -37,6 +37,9 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        if(!session.getAttribute("role").equals("customer")){
+            response.sendRedirect("admin-home");
+        }else{
         BookDAO bookDAO = new BookDAO();
         CartDAO cartDAO = new CartDAO();
         Account user = (Account) session.getAttribute("user");
@@ -50,7 +53,7 @@ public class CartServlet extends HttpServlet {
         session.setAttribute("cart", cartList);
 
         request.getRequestDispatcher("WEB-INF/view/cart.jsp").forward(request, response);
-
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

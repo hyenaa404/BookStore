@@ -57,12 +57,12 @@
         <filter-class>controller.filter.AccessFilter</filter-class>
     </filter>
     <filter>
-        <filter-name>AdminAccessFilter</filter-name>
-        <filter-class>controller.filter.AdminAccessFilter</filter-class>
-    </filter>
-    <filter>
         <filter-name>DisplayButtonFilter</filter-name>
         <filter-class>controller.filter.DisplayButtonFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminAccessFilter</filter-name>
+        <filter-class>controller.filter.AdminAccessFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AccessFilter</filter-name>
@@ -70,14 +70,6 @@
         <url-pattern>/cart</url-pattern>
         <url-pattern>/order</url-pattern>
         <url-pattern>/view-order</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AdminAccessFilter</filter-name>
-        <url-pattern>/admin-home</url-pattern>
-        <url-pattern>/user-manage</url-pattern>
-        <url-pattern>/products-manage</url-pattern>
-        <url-pattern>/discounts-manage</url-pattern>
-        <url-pattern>/orders-manage</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>DisplayButtonFilter</filter-name>
@@ -88,6 +80,14 @@
         <url-pattern>/home</url-pattern>
         <url-pattern>/order</url-pattern>
         <url-pattern>/register</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminAccessFilter</filter-name>
+        <url-pattern>/admin-home</url-pattern>
+        <url-pattern>/user-manage</url-pattern>
+        <url-pattern>/products-manage</url-pattern>
+        <url-pattern>/discounts-manage</url-pattern>
+        <url-pattern>/orders-manage</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
