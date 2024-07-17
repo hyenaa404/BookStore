@@ -772,6 +772,21 @@ h2 {
 
 /* //-----------------------pruduct-details---------------------------------------- */
 
+
+.rt div {
+    margin-left: 150px;
+}
+
+#comment {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px 40px 20px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 15px;
+    border-bottom: solid 1px #dddddd;
+}
+
+
 #ratingStatus {
     margin-bottom: 0px;
     font-size: 13px;

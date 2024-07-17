@@ -4,14 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/cart.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/product-details.jsp</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/order.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/OrderServlet.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/model/Review.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/mycode.js</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/admin-home.jsp</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/admin/ProductsManageServlet.java</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/view-order.jsp</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/account.jsp</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/AccountDAO.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/web/WEB-INF/view/orders-manage.jsp</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/admin/OrderManageServlet.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/OrderDAO.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/controller/DetailBookServlet.java</file>
+            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/BookStore/src/java/context/ReviewDAO.java</file>
         </group>
     </open-files>
 </project-private>

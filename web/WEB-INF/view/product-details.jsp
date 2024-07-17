@@ -109,7 +109,7 @@
                 </form>
 
                 <c:forEach var ="b" items='${reviewList}'>
-                    <p>@${b.getUserId()} : ${b.getComment()}</p>
+                    <p id = "comment">@${b.getUserId()} : ${b.getComment()}</p>
 
                 </c:forEach>
             </div>
