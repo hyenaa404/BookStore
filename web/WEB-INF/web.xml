@@ -21,6 +21,10 @@
         <servlet-name>ProductsManageServlet</servlet-name>
         <servlet-class>controller.admin.ProductsManageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DiscountsManage</servlet-name>
+        <servlet-class>controller.admin.DiscountsManage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllBookServlet</servlet-name>
         <url-pattern>/all-book</url-pattern>
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>ProductsManageServlet</servlet-name>
         <url-pattern>/products-manage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscountsManage</servlet-name>
+        <url-pattern>/discounts-manage</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

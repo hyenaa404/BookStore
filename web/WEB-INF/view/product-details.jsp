@@ -86,21 +86,21 @@
                     <h4>REVIEW</h4>
                 </div>
                 <form action="detail" method="POST">
-                    <c:if test="${sessionScope.role != null}">
-                        <div class ="rate-product">
-                            <label for="rating">Rate:</label>
-                            <select name="rating" id="rating">
-                                <option value="1">⭐</option>
-                                <option value="2">⭐ ⭐</option>
-                                <option value="3">⭐ ⭐ ⭐</option>
-                                <option value="4">⭐ ⭐ ⭐ ⭐</option>
-                                <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
-                            </select>
-                        </div>
-                        <div class ="review-content">
-                            <input type = "text" name = "comment" placeholder="Enter content...">
-                        </div>
+                    <div class ="rate-product">
+                        <label for="rating">Rate:</label>
+                        <select name="rating" id="rating">
+                            <option value="1">⭐</option>
+                            <option value="2">⭐ ⭐</option>
+                            <option value="3">⭐ ⭐ ⭐</option>
+                            <option value="4">⭐ ⭐ ⭐ ⭐</option>
+                            <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+                        </select>
+                    </div>
+                    <div class ="review-content">
+                        <input type = "text" name = "comment" placeholder="Enter content...">
+                    </div>
 
+                    <c:if test="${sessionScope.role != null}">
                         <input type = "hidden" name ="bookID" value = "${book.getId()}">
                         <input type = "hidden" name ="userID" value = "${user.getId()}">
                         <div class ="center">
